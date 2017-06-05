@@ -85,7 +85,11 @@ I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner 
 I use two spaces, no semi-colons, and trailing commas where possible. I'll
 have a linter someday soon.
 
-## Quick Heroku deployment
+## Deployment
+
+I'm a version of Bones which doesn't have a nifty deployment script. But that means I can be connected to various Continuous Integration (CI) services, which can deploy me automatically! Maybe your instructor will show you how to connect Heroku to a GitHub branch?
+
+### Heroku Tips
 
 1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
 2. `heroku login`
@@ -93,12 +97,9 @@ have a linter someday soon.
   - **If you're creating a new app...**
     1. `heroku create` or `heroku create your-app-name` if you have a name in mind.
     2. `heroku addons:create heroku-postgresql:hobby-dev` to add postgres
-    3. `npm run deploy-heroku`. This will create a new branch and compile and commit your frontend JS to it, then push that branch to Heroku.
-    4. `heroku run npm run seed` to seed the database
-
   - **If you already have a Heroku app...**
     1.  `heroku git:remote your-app-name` You'll need to be a collaborator on the app.
 
 Afterwards,
-  - *To deploy:* `npm run deploy-heroku`
-  - *To re-seed:* `heroku run npm run seed`
+  - *Connect Heroku to your `master` branch on GitHub*
+  - *To (re-)seed:* `heroku run npm run seed`
