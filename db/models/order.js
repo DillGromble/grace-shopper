@@ -9,7 +9,7 @@ module.exports = db => db.define('orders', {
   },
   status: {
     type: STRING,
-    isIn: [["Created", "Processing", "Cancelled", "Completed"]]
+    isIn: [['Created', 'Processing', 'Cancelled', 'Completed']]
   },
   items: {
     type: ARRAY(JSON), // current assumption is element: {product: '', price:NUM, quantity: NUM}
@@ -21,4 +21,3 @@ module.exports.association = (Order, {User}) => {
   Order.belongsTo(User)
   // pull items from cart
 }
-
