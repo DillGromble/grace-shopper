@@ -18,7 +18,7 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer.js'
-import Checkout from './components/Checkout/checkout'
+import Checkout from './components/CheckoutCart/react/checkout'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
