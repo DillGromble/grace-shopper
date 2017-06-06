@@ -17,6 +17,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import AllProducts from './components/AllProducts/react/AllProductsContainer.js'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -36,6 +37,7 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
+        <Route path="/products" component={AllProducts} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
