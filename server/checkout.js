@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const User = db.model('users')
+const Order = db.model('orders')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -9,8 +10,10 @@ module.exports = require('express').Router()
   // GET api/checkout
   .get('/',
     (req, res, next) =>
-      res.send('This is the checkout page')
-      .catch(next))
+      Order.findAll({})
+      .then(orders => res.send(orders))
+      .catch(next)
+  )
 
 /*
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')

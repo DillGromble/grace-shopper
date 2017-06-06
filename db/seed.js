@@ -1,13 +1,14 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Promise} = db
+    , {User, Thing, Favorite, Order, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
     things: things(),
+    orders: orders()
   }
 
   seeded.favorites = favorites(seeded)
@@ -26,6 +27,22 @@ const users = seed(User, {
     email: 'barack@example.gov',
     password: '1234'
   },
+})
+
+const orders = seed(Order, {
+  testOrder: {
+    address: '123 Street',
+    status: 'Processing',
+    items: [{
+      product: 'Christmas Ugly Sweater',
+      price: 20,
+      quantity: 3
+    }, {
+      product: 'Halloween Pumpkin',
+      price: 5,
+      quantity: 1
+    }]
+  }
 })
 
 const things = seed(Thing, {
@@ -135,4 +152,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, favorites})
+module.exports = Object.assign(seed, {users, things, orders, favorites})
