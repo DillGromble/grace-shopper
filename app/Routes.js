@@ -7,7 +7,7 @@ import Jokes from './components/Jokes'
 
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer'
-import ManageCart from './components/ManageCart/react/ManageCart'
+import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
 import { retrieveItems } from './components/ManageCart/redux/action-creators'
