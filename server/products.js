@@ -1,7 +1,10 @@
 const products = require('express').Router()
+const {Products} = require('APP/db')
 
 products.get('/', (req, res, next) => {
-  res.send('You must be looking for all the products!')
+  Products.findAll()
+  .then(allProducts => res.json(allProducts))
+  .catch(err => console.error(err))
 })
 
 module.exports = products

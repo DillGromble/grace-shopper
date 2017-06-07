@@ -20,8 +20,15 @@ import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
+import { fetchAllProducts } from './components/AllProducts/reducers/products'
+
 const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth }) => ({ user: auth }),
+  // (dispatch) => ({
+  //   loadProducts: () => {
+  //     dispatch(fetchAllProducts())
+  //   }
+  // })
 )(
   ({ user, children }) =>
     <div>
