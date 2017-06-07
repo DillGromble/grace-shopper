@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import './deliberately-missing'
 
 const NotFound = props => {
   const {pathname} = props.location || {pathname: '<< no path >>'}
