@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { addToCart } from '../../ManageCart/reducers/reducer'
 
 const AllProducts = props => (
   <div>
@@ -13,7 +14,13 @@ const AllProducts = props => (
               <div className="caption">
                 <h5>
                   <span>{ product.name }</span>
-                  <button>Add to Cart</button>
+                  <form onSubmit={ (e) => {
+                    e.preventDefault()
+                    props.dispatchToCart(product)
+                  }
+                  }>
+                    <button>Add to Cart</button>
+                  </form>
                 </h5>
               </div>
           </div>
@@ -22,9 +29,12 @@ const AllProducts = props => (
     </div>
   </div>
 )
-
 const mapState = state => ({
   products: state.products.products
 })
-
-export default connect(mapState)(AllProducts)
+const mapDispatch = dispatch => ({
+  dispatchToCart: (item) => {
+    dispatch(addToCart(item))
+  }
+})
+export default connect(mapState, mapDispatch)(AllProducts)
