@@ -32,9 +32,11 @@ const AllProducts = props => (
 const mapState = state => ({
   products: state.products.products
 })
+
 const mapDispatch = dispatch => ({
   dispatchToCart: (item) => {
     dispatch(addToCart(item))
   }
 })
+
 export default connect(mapState, mapDispatch)(AllProducts)
