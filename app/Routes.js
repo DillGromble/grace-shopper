@@ -19,7 +19,7 @@ const Routes = props => (
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
-        <Route path="/users/:id/cart/products" component={ManageCartContainer} />
+        <Route path="/user/:id/cart" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/checkout" component={Checkout} />
       </Route>
       <Route path='*' component={NotFound} />
@@ -29,6 +29,9 @@ const Routes = props => (
 const mapDispatch = dispatch => ({
   loadProducts: () => {
     dispatch(fetchAllProducts())
+  },
+  loadCartItems: () => {
+    dispatch(retrieveItems())
   }
 })
 

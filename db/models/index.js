@@ -21,6 +21,7 @@ const app = require('APP')
       Types: require('./productTypes'),
       Holiday: require('./holidays'),
       Cart: require('./cart'),
+      InCart: require('./inCart'),
       // ---------- Add new models here ----------
       Order: require('./order')
     }
