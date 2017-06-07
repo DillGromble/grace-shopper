@@ -53,3 +53,21 @@ module.exports = require('express').Router()
           res.json(cartItems)
         })
         .catch(next))
+  .put('/:id/cart/products',
+    (req, res, next) =>
+      Cart.findOrCreate({
+        where: {
+          user_id: 1
+        }
+      })
+      // still need to link Cart to InCart model
+      // .then(foundCart => {
+      //   return InCart.findOrCreate({
+      //     where: {
+      //       cart_id: foundCart.id
+      //     }
+      //   })
+      // })
+      .then(foundCart => res.json(foundCart))
+      .catch(console.error.bind(console))
+  )
