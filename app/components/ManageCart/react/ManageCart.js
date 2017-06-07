@@ -5,7 +5,7 @@ const ManageCart = (props) => (
     <h1>Your Cart Items:</h1>
     <div >product.name</div>
     <div >product.price</div>
-    <div onChange={props.updateQuanity} >product.quanity</div>
+    <div >product.quanity</div>
   </div>
 )
 
