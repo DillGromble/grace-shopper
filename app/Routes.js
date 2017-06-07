@@ -10,7 +10,7 @@ import AllProducts from './components/AllProducts/react/AllProductsContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
-import { retrieveItems } from './components/ManageCart/reducers/manageCart'
+import { retrieveItems } from './components/ManageCart/redux/action-creators'
 import { fetchAllProducts } from './components/AllProducts/reducers/products'
 
 const Routes = props => (
@@ -19,7 +19,7 @@ const Routes = props => (
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
-        <Route path="/user/:id/cart" component={ManageCartContainer} onEnter={props.loadCartItems} />
+        <Route path="/cart" component={ManageCart} />
         <Route path="/checkout" component={Checkout} />
       </Route>
       <Route path='*' component={NotFound} />
@@ -29,9 +29,6 @@ const Routes = props => (
 const mapDispatch = dispatch => ({
   loadProducts: () => {
     dispatch(fetchAllProducts())
-  },
-  loadCartItems: () => {
-    dispatch(retrieveItems())
   }
 })
 
