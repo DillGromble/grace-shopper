@@ -3,6 +3,9 @@ import React from 'react'
 const ManageCart = (props) => (
   <div>
     <h1>Your Cart Items:</h1>
+    <div >product.name</div>
+    <div >product.price</div>
+    <div >product.quanity</div>
   </div>
 )
 
