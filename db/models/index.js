@@ -17,6 +17,9 @@ const app = require('APP')
       User: require('./user'),
       Thing: require('./thing'),
       Favorite: require('./favorite'),
+      Products: require('./products'),
+      Types: require('./productTypes'),
+      Holiday: require('./holidays'),
       // ---------- Add new models here ----------
     }
     , {mapValues} = require('lodash')

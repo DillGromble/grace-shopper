@@ -22,8 +22,15 @@ import ManageCart from './components/ManageCart/react/ManageCart'
 import Checkout from './components/CheckoutCart/react/Checkout'
 import { retrieveItems } from './components/ManageCart/redux/action-creators'
 
+import { fetchAllProducts } from './components/AllProducts/reducers/products'
+
 const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth }) => ({ user: auth }),
+  // (dispatch) => ({
+  //   loadProducts: () => {
+  //     dispatch(fetchAllProducts())
+  //   }
+  // })
 )(
   ({ user, children }) =>
     <div>
