@@ -21,6 +21,7 @@ const app = require('APP')
       Types: require('./productTypes'),
       Holiday: require('./holidays'),
       // ---------- Add new models here ----------
+      Order: require('./order')
     }
     , {mapValues} = require('lodash')
 
