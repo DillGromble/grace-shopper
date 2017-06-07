@@ -9,6 +9,7 @@ const Root = ({ user, children }) => (
     <nav>
       {user ? <WhoAmI/> : <Login/>}
     </nav>
+    <Navbar />
     <div id="main" className="container-fluid">
       { children }
     </div>
