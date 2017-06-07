@@ -1,9 +1,20 @@
 import React from 'react'
 
-// export default ManageCart = () => {
-//   <div>
-//     <ul>
-//       {props.cartItems && props.cartItems}
-//    </ul>
-//   </div>
-// }
+const ManageCart = (props) => (
+  <div>
+    <h1>Your Cart Items:</h1>
+  </div>
+)
+
+export default ManageCart
+
+/*
+ <ul>
+      {props.cartItems && props.cartItems.map(cartItem => {
+        return (
+          <li key={ cartItem.id }> Name: {cartItem.product.name} Price: {cartItem.product.price} </li>
+        )
+      })
+      }
+    </ul>
+*/

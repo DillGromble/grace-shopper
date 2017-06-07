@@ -18,7 +18,9 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer'
+import ManageCart from './components/ManageCart/react/ManageCart'
 import Checkout from './components/CheckoutCart/react/Checkout'
+import { retrieveItems } from './components/ManageCart/redux/action-creators'
 
 import { fetchAllProducts } from './components/AllProducts/reducers/products'
 
@@ -46,6 +48,7 @@ render(
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} />
+        <Route path="/cart" component={ManageCart}/>
         <Route path="/checkout" component={Checkout} />
       </Route>
       <Route path='*' component={NotFound} />

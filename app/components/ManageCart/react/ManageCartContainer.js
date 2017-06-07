@@ -3,10 +3,11 @@ import {connect} from 'react-redux'
 import ManageCart from './ManageCart'
 
 const mapStateToProps = state => ({
-  // user's items in cart: state.userItems
+  // cartItems: state.cartItems
 })
 
 const mapDispatchToProps = dispatch => ({
+  // loadItems: () => {},
   // addItem: () => {},
   // removeItem: () => {},
   // updateItemQuantity: () => {},

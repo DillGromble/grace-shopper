@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/queerviolet/bones#readme",
   "dependencies": {
-    "axios": "^0.15.2",
+    "axios": "^0.16.2",
     "babel": "^6.5.2",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.2.2",
@@ -58,7 +58,7 @@
     "check-node-version": "^1.1.2",
     "concurrently": "^3.1.0",
     "cookie-session": "^2.0.0-alpha.1",
-    "express": "^4.14.0",
+    "express": "^4.15.3",
     "finalhandler": "^1.0.0",
     "homedir": "^0.6.0",
     "passport": "^0.3.2",
