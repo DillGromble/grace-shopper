@@ -40,11 +40,17 @@ module.exports = require('express').Router()
       .then(cart => res.status(201).json(cart))
       .catch(next))
   .get('/:id/cart/products',
-    mustBeLoggedIn,
-    (req, res, next) =>
-      User.findById(req.params.id)
-      .then(user => {
-        Cart.findOrCreate({where: {userId: req.params.id}})
-      })
-      .then(cart => res.json(cart.products))
-      .catch(next))
+      (req, res, next) =>
+        Cart.findOne({where: {user_id: req.params.id}})
+        .then(cart => {
+          const cartItems = cart.products.map(product => {
+            return {
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              quantity: product.inCart.quantity
+            }
+          })
+          res.json(cartItems)
+        })
+        .catch(next))

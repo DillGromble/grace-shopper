@@ -9,9 +9,9 @@ const {INTEGER} = require('sequelize')
 module.exports = db => db.define('inCart', {
   quantity: INTEGER
 }, {
-  defaultScope: {
+  defaultScope: () => ({
     include: [{
       all: true
     }]
-  }
+  })
 })
