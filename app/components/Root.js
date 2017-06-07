@@ -3,15 +3,16 @@ import { connect } from 'react-redux'
 
 import Login from './Login'
 import WhoAmI from './WhoAmI'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 const Root = ({ user, children }) => (
   <div>
-    <nav>
-      {user ? <WhoAmI/> : <Login/>}
-    </nav>
+    <Navbar />
     <div id="main" className="container-fluid">
       { children }
     </div>
+    <Footer />
   </div>
 )
 

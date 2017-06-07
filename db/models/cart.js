@@ -1,5 +1,8 @@
 'use strict'
 
+const User = require('./user')
+// const Product = require('./product')
+
 const {INTEGER} = require('sequelize')
 
 module.exports = db => db.define('cart', {}, {
@@ -11,7 +14,7 @@ module.exports = db => db.define('cart', {}, {
 })
 
 // review Product table name with Josh
-module.exports.associations = (Cart, {User, Products, InCart}) => {
-  Cart.belongsToMany(Products, {through: InCart})
-  Cart.belongsTo(User)  // userId attached to cart
+module.exports.associations = (Cart, {User, Products}) => {
+  Cart.belongsTo(User, {through: 'UserCart'})
+  Cart.belongsToMany(Products, {through: 'CartItems'})
 }
