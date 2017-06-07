@@ -9,12 +9,12 @@ const LOAD_ALL = 'LOAD_ALL_PRODUCTS'
 const loadAllProducts = products => ({ type: LOAD_ALL, products })
 
 /* -------------------------------REDUCER------------------------------------ */
-const reducer = (state, action) => {
+const reducer = (state={}, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
   case LOAD_ALL:
-    newState.products = state.products
+    newState.products = action.products
     break
   }
   return newState
