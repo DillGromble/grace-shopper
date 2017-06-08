@@ -43,14 +43,7 @@ module.exports = require('express').Router()
       (req, res, next) =>
         Cart.findOne({where: {user_id: req.params.id}})
         .then(cart => {
-          const cartItems = cart.products.map(product =>
-          ({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: product.inCart.quantity,
-            user_id: cart.user_id
-          }))
+          const cartItems = cart.sortCart(cart)
           res.json(cartItems)
         })
         .catch(next))
