@@ -30,7 +30,8 @@ module.exports = require('express').Router()
           })
           .then(foundIncart => {
             if (!foundIncart) return InCart.create({cart_id: req.params.id, product_id: req.body.id})
-            return foundIncart.update({quantity: req.body.quantity})
+            const newQuanity = foundIncart.quantity + req.body.amount
+            return foundIncart.update({quantity: newQuanity})
             .then(() => res.status(204).json('Updated cart.'))
           })
         )

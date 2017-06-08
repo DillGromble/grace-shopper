@@ -1,7 +1,5 @@
 'use strict'
 
-const Products = require('./products')
-
 const {INTEGER} = require('sequelize')
 
 module.exports = db => db.define('inCart', {

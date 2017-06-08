@@ -63,14 +63,14 @@ export const retrieveItems = (cartId) => (dispatch) => {
 }
 
 export const addToCart = (item, cartId) => (dispatch) => {
-  item.quantity++
+  item.amount = 1
   axios.put(`/api/cart/${cartId}/products`, item)
   .then(res => dispatch(addItem(item)))
   .catch(console.error.bind(console))
 }
 
 export const removeFromCart = (item, cartId) => (dispatch) => {
-  item.quantity--
+  item.amount = -1
   axios.put(`/api/cart/${cartId}/products`, item)
   .then(res => dispatch(removeItem(item)))
   .catch(console.error.bind(console))
