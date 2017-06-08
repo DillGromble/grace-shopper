@@ -9,7 +9,7 @@ const Checkout = props => (
         <Form></Form>
     </div>
     <div>
-      <h1>Total Price: ${props.cartItems && props.cartItems.reduce((total, item) => {
+      <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
         total += item.price * item.quantity
         return total
       }, 0)}

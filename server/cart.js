@@ -7,12 +7,12 @@ const InCart = db.model('inCart')
 module.exports = require('express').Router()
   .get('/:id',
     (req, res, next) =>
-      Cart.findOrCreate({where: {id: req.params.id}})
+      Cart.findOrCreate({where: {user_id: req.params.id}})
       .then(cart => res.status(201).json(cart))
       .catch(next))
   .get('/:id/products',
       (req, res, next) =>
-        Cart.findOne({where: {id: req.params.id}})
+        Cart.findOne({where: {user_id: req.params.id}})
         .then(cart => {
           if (!cart) return res.json('Sign up to continue shopping.')
           const cartItems = cart.sortCartForCheckout(cart)
@@ -21,11 +21,15 @@ module.exports = require('express').Router()
         .catch(next))
   .put('/:id/products',
       (req, res, next) =>
-        Cart.findOne({where: {id: req.params.id}})
-        .then(foundCart =>
-          InCart.findOne({
+        Cart.findOne({where: {user_id: req.params.id}})
+        .then(cart => {
+          if (!cart) {
+            return Cart.create({user_id: this.id})
+            .then(newCart => InCart.create({cart_id: newCart.id, product_id: req.body.id}))
+          }
+          return InCart.findOne({
             where: {
-              cart_id: foundCart.id,
+              cart_id: cart.id,
               product_id: req.body.id
             }
           })
@@ -35,5 +39,5 @@ module.exports = require('express').Router()
             return foundIncart.update({quantity: newQuanity})
             .then(() => res.status(204).json('Updated cart.'))
           })
-        )
+        })
         .catch(next))

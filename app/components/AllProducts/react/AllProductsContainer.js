@@ -7,7 +7,7 @@ const AllProducts = props => (
     <h1>You've landed at the all products page!</h1>
     <div className="row">
     {
-      props.cartId && props.products && props.products
+      props.cartId >= 0 && props.products && props.products
         .map(product => (
           <div className="col-xs-4" key={ product.id }>
               <img src="http://lorempixel.com/250/250/nature" />
