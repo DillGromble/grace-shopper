@@ -35,7 +35,7 @@ module.exports = require('express').Router()
     (req, res, next) =>
       User.findById(req.params.id)
       .then(user => {
-        Cart.findOrCreate({where: {userId: req.params.id}})
+        Cart.findOrCreate({where: {user_id: req.params.id}})
       })
       .then(cart => res.status(201).json(cart))
       .catch(next))
@@ -48,7 +48,8 @@ module.exports = require('express').Router()
             id: product.id,
             name: product.name,
             price: product.price,
-            quantity: product.inCart.quantity
+            quantity: product.inCart.quantity,
+            user_id: cart.user_id
           }))
           res.json(cartItems)
         })

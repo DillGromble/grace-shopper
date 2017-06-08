@@ -29,7 +29,6 @@ const AllProducts = props => (
     </div>
   </div>
 )
-
 const mapState = state => ({
   products: state.products.products
 })

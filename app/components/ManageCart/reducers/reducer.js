@@ -22,7 +22,7 @@ const initialState = {
 }
 
 /* -------------------------------REDUCER------------------------------------ */
-export default (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
   case LOAD_ITEMS:
@@ -42,21 +42,23 @@ export default (state = initialState, action) => {
 }
 
 // Thunk action creator
-export const retrieveItems = () => (dispatch) => {
-  axios.get('/api/users/:id/cart/products')
+export const retrieveItems = (id) => (dispatch) => {
+  axios.get(`/api/users/${id}/cart/products`)
   .then(res => res.data)
   .then(cart => dispatch(loadItems(cart)))
   .catch(console.error.bind(console))
 }
 
 export const addToCart = (item) => (dispatch) => {
-  axios.put('/api/users/:id/cart/products', item)
+  axios.put(`/api/users/${item.user_id}/cart/products`, item)
   .then(res => dispatch(addItem(item)))
   .catch(console.error.bind(console))
 }
 
 export const removeFromCart = (item) => (dispatch) => {
-  axios.put('/api/users/:id/cart/products', item)
+  axios.put(`/api/users/${item.user_id}/cart/products`, item)
   .then(res => dispatch(removeItem(item)))
   .catch(console.error.bind(console))
 }
+
+export default reducer
