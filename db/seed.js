@@ -58,9 +58,6 @@ const holidays = seed(Holiday, {
   july4: { name: 'Fourth of July' }
 })
 
-
-
-
 const orders = seed(Order, {
   testOrder: {
     address: '123 Street',
