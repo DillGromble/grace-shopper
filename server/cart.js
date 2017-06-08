@@ -14,6 +14,7 @@ module.exports = require('express').Router()
       (req, res, next) =>
         Cart.findOne({where: {id: req.params.id}})
         .then(cart => {
+          if (!cart) return res.json('Sign up to continue shopping.')
           const cartItems = cart.sortCartForCheckout(cart)
           res.status(201).json(cartItems)
         })

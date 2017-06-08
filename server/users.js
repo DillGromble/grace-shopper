@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const User = db.model('users')
+const Cart = db.model('cart')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
