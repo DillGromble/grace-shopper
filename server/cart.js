@@ -30,23 +30,8 @@ module.exports = require('express').Router()
           })
           .then(foundIncart => {
             if (!foundIncart) return InCart.create({cart_id: req.params.id, product_id: req.body.id})
-            foundIncart.update({quantity: req.body.quantity})
+            return foundIncart.update({quantity: req.body.quantity})
             .then(() => res.status(204).json('Updated cart.'))
           })
-          .then(loadedCart => res.status(204).json(loadedCart))
         )
         .catch(next))
-
-  // .put('/:id/cart/products',
-  //   (req, res, next) =>
-  //     Cart.findOrCreate({where: {user_id: req.params.id}})
-  //     .then(foundCart => {
-  //       InCart.findOrCreate({
-  //         where: {
-  //           cart_id: foundCart.id
-  //         }
-  //       }
-  //     })
-  //     .then(foundCart => res.json(foundCart))
-  //     .catch(console.error.bind(console))
-  // )

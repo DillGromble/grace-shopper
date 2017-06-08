@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 const ManageCart = (props) => (
   <div>
@@ -26,7 +27,7 @@ const ManageCart = (props) => (
       }, 0)}
       </h1>
     </div>
-    <h2>Proceed To Checkout...</h2>
+    <Link to={`/${props.cartId}/checkout`}><h2>Proceed To Checkout...</h2></Link>
   </div>
 )
 

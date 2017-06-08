@@ -20,7 +20,7 @@ const Routes = props => (
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
         <Route path="/cart/:id/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/:id/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
@@ -30,8 +30,12 @@ const mapDispatch = dispatch => ({
   loadProducts: () => {
     dispatch(fetchAllProducts())
   },
-  loadCartItems: (cart) => {
-    dispatch(retrieveItems(cart.params.id))
+  loadCartItems: (cartId) => {
+    dispatch(retrieveItems(cartId.params.id))
+  },
+  loadCheckout: (cartId) => {
+    dispatch(retrieveItems(cartId.params.id))
+    // dispatch user info to update info state
   }
 })
 
