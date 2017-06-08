@@ -7,7 +7,7 @@ const AllProducts = props => (
     <h1>You've landed at the all products page!</h1>
     <div className="row">
     {
-      props.products && props.products
+      props.cartId >= 0 && props.products && props.products
         .map(product => (
           <div className="col-xs-4" key={ product.id }>
               <img src="http://lorempixel.com/250/250/nature" />
@@ -16,7 +16,7 @@ const AllProducts = props => (
                   <span>{ product.name }</span>
                   <form onSubmit={ (e) => {
                     e.preventDefault()
-                    props.dispatchToCart(product)
+                    props.dispatchToCart(product, props.cartId)
                   }
                   }>
                     <button>Add to Cart</button>
@@ -30,12 +30,13 @@ const AllProducts = props => (
   </div>
 )
 const mapState = state => ({
-  products: state.products.products
+  products: state.products.products,
+  cartId: state.cartItems.cartId
 })
 
 const mapDispatch = dispatch => ({
-  dispatchToCart: (item) => {
-    dispatch(addToCart(item))
+  dispatchToCart: (item, cartId) => {
+    dispatch(addToCart(item, cartId))
   }
 })
 
