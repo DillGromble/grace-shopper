@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Order, Promise} = db
+    , {User, Thing, Favorite, Order, Products, Holiday, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -27,6 +27,35 @@ const users = seed(User, {
     email: 'barack@example.gov',
     password: '1234'
   },
+  cindy: {
+    name: 'Cindy',
+    email: 'cindy@cindy.com',
+    password: '1234'
+  },
+  jen: {
+    name: 'Jen',
+    email: 'jen@jen.com',
+    password: '1234'
+  },
+  alice: {
+    name: 'Alice',
+    email: 'alice@alice.com',
+    password: '1234'
+  },
+  dennis: {
+    name: 'Dennis',
+    email: 'dennis@dennis.com',
+    password: '1234'
+  }
+})
+
+const holidays = seed(Holiday, {
+  christmas: { name: 'Christmas' },
+  thanksgiving: { name: 'Thanksgiving' },
+  halloween: { name: 'Halloween' },
+  easter: { name: 'Easter' },
+  new_years: { name: 'New Years' },
+  july4: { name: 'Fourth of July' }
 })
 
 const orders = seed(Order, {
