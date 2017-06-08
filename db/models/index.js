@@ -18,7 +18,6 @@ const app = require('APP')
       Thing: require('./thing'),
       Favorite: require('./favorite'),
       Products: require('./products'),
-      Types: require('./productTypes'),
       Holiday: require('./holidays'),
       Cart: require('./cart'),
       InCart: require('./inCart'),
