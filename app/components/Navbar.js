@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import Login from './Login'
+import WhoAmI from './WhoAmI'
 
-const Navbar = () => (
+const Navbar = ({user}) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -10,13 +12,7 @@ const Navbar = () => (
 
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav">
-          <li><Link to="/stuff">Stuff</Link></li>
-          <li><Link to="/moreStuff">More Stuff</Link></li>
-          <li><Link to="/evenMoreStuff">Even More Stuff</Link></li>
-        </ul>
-
-        <ul className="nav navbar-nav navbar-right">
-          <li className="active"><a href="#">Logout</a></li>
+          <li><Link to="/products">All Products</Link></li>
           <li className="dropdown">
             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
             <ul className="dropdown-menu">
@@ -27,14 +23,21 @@ const Navbar = () => (
               <li><a href="#">Separated link</a></li>
             </ul>
           </li>
+          <li><Link to="/users/:id/cart/products">Cart</Link></li>
+        </ul>
+
+        <ul className="nav navbar-nav navbar-right">
+          <li className="active">{user ? <WhoAmI/> : <Login/>}</li>
         </ul>
       </div>
     </div>
   </nav>
 )
 
-export default Navbar
+import {connect} from 'react-redux'
 
-// <nav>
-  // {user ? <WhoAmI/> : <Login/>}
-// </nav>
+export default connect(
+  ({ auth }) => ({ user: auth })
+)(Navbar)
+
+// {user ? <div><WhoAmI/><a href="#">Logout</a></div> : <Login/>}
