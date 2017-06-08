@@ -10,7 +10,7 @@ import AllProducts from './components/AllProducts/react/AllProductsContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
-import { retrieveItems } from './components/ManageCart/reducers/reducer'
+import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
 import { fetchAllProducts } from './components/AllProducts/reducers/products'
 
 const Routes = props => (
@@ -19,8 +19,8 @@ const Routes = props => (
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
-        <Route path="/users/:id/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/cart/:id/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
+        <Route path="/:id/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
@@ -30,8 +30,12 @@ const mapDispatch = dispatch => ({
   loadProducts: () => {
     dispatch(fetchAllProducts())
   },
-  loadCartItems: (user) => {
-    dispatch(retrieveItems(user.params.id))
+  loadCartItems: (cartId) => {
+    dispatch(retrieveItems(cartId.params.id))
+  },
+  loadCheckout: (cartId) => {
+    dispatch(retrieveItems(cartId.params.id))
+    // dispatch user info to update info state
   }
 })
 

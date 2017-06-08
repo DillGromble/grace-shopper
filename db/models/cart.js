@@ -5,6 +5,24 @@ module.exports = db => db.define('cart', {}, {
     include: [{
       all: true
     }]
+  },
+  instanceMethods: {
+    sortCartForCheckout: (cart) => cart.products.reduce((sortedCart, item) => {
+      for (let i = 0; i < sortedCart.length; i++) {
+        if (sortedCart[i].name === item.name) {
+          sortedCart[i].quantity++
+          return sortedCart
+        }
+      }
+      sortedCart.push({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.inCart.quantity,
+        user_id: cart.user_id
+      })
+      return sortedCart
+    }, [])
   }
 })
 
