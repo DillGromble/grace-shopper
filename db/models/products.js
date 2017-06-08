@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING, FLOAT, INTEGER} = require('sequelize')
+const {STRING, FLOAT, INTEGER, ENUM} = require('sequelize')
 
 module.exports = db => db.define('products', {
   name: {
@@ -21,10 +21,12 @@ module.exports = db => db.define('products', {
     validate: { min: 0 },
     allowNull: false,
     defaultValue: 1
+  },
+  type: {
+    type: ENUM('Decorations', 'Apparel', 'Gifts', 'Misc'),
   }
 })
 
-module.exports.associations = (Products, {Holiday, Types}) => {
+module.exports.associations = (Products, {Holiday}) => {
   Products.belongsTo(Holiday)
-  Products.belongsTo(Types)
 }
