@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING, ARRAY, JSON} = require('sequelize')
+const {STRING, JSON, ENUM, ARRAY} = require('sequelize')
 
 module.exports = db => db.define('orders', {
   address: {
@@ -8,8 +8,8 @@ module.exports = db => db.define('orders', {
     allowNull: false
   },
   status: {
-    type: STRING,
-    isIn: [['Created', 'Processing', 'Cancelled', 'Completed']]
+    type: ENUM,
+    values: ['Created', 'Processing', 'Cancelled', 'Completed']
   },
   items: {
     type: ARRAY(JSON), // current assumption is element: {product: '', price:NUM, quantity: NUM}
