@@ -7,7 +7,7 @@ module.exports = db => db.define('cart', {}, {
     }]
   },
   instanceMethods: {
-    sortCart: (cart) => cart.products.reduce((sortedCart, item) => {
+    sortCartForCheckout: (cart) => cart.products.reduce((sortedCart, item) => {
       for (let i = 0; i < sortedCart.length; i++) {
         if (sortedCart[i].name === item.name) {
           sortedCart[i].quantity++
