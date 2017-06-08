@@ -49,12 +49,12 @@ const reducer = (state = initialState, action) => {
 }
 
 // Thunk action creator
-export const getCart = (cartId) => (dispatch) => {
-  axios.get(`/api/cart/${cartId}`)
-  .then(res => res.data)
-  .then(cart => dispatch(setCart(cart.id)))
-  .catch(console.error.bind(console))
-}
+// export const getCart = (cartId) => (dispatch) => {
+//   axios.get(`/api/cart/${cartId}`)
+//   .then(res => res.data)
+//   .then(cart => dispatch(setCart(cart.id)))
+//   .catch(console.error.bind(console))
+// }
 export const retrieveItems = (cartId) => (dispatch) => {
   axios.get(`/api/cart/${cartId}/products`)
   .then(res => res.data)
