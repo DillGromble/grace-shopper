@@ -9,7 +9,7 @@ const Checkout = props => (
         <Form></Form>
     </div>
     <div>
-      <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
+      <h1>Total Price: ${Array.isArray(props.cart) && props.cart.reduce((total, item) => {
         total += item.price * item.quantity
         return total
       }, 0)}
@@ -20,7 +20,7 @@ const Checkout = props => (
 
 const mapStateToProps = state => ({
   products: state.products.products,
-  cartItems: state.cartItems.cartItems
+  cart: state.cart.cart
 })
 
 const mapDispatchToProps = dispatch => ({

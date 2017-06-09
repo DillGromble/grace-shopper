@@ -31,7 +31,7 @@ const AllProducts = props => (
 )
 const mapState = state => ({
   products: state.products.products,
-  cartId: state.cartItems.cartId
+  cartId: state.cart.id
 })
 
 const mapDispatch = dispatch => ({

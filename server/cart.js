@@ -26,6 +26,7 @@ module.exports = require('express').Router()
           if (!cart) {
             return Cart.create({user_id: this.id})
             .then(newCart => InCart.create({cart_id: newCart.id, product_id: req.body.id}))
+            .then(() => res.json('Item added to cart.'))
           }
           return InCart.findOne({
             where: {
@@ -35,7 +36,7 @@ module.exports = require('express').Router()
           })
           .then(foundIncart => {
             if (!foundIncart) return InCart.create({cart_id: req.params.id, product_id: req.body.id})
-            const newQuanity = foundIncart.quantity + req.body.amount
+            const newQuanity = foundIncart.quantity + 1
             return foundIncart.update({quantity: newQuanity})
             .then(() => res.status(204).json('Updated cart.'))
           })
