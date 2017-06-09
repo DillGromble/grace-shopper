@@ -19,7 +19,7 @@
     "start": "node server/start.js",
     "start-watch": "nodemon server/start.js --watch server --watch db --watch index.js --watch package.json",
     "start-dev": "cross-env NODE_ENV=development npm run start-watch",
-    "test": "mocha --compilers js:babel-register --require babel-polyfill --watch-extensions js,jsx app/**/*.test.js app/**/*.test.jsx server/**/*.test.js db/**/*.test.js",
+    "test": "mocha --compilers js:babel-register --require babel-polyfill --watch-extensions js,jsx app/**/*.test.js app/**/*.test.jsx  app/components/**/*.test.jsx server/**/*.test.js db/**/*.test.js",
     "test-watch": "npm run test -- --watch --reporter=min",
     "seed": "node db/seed.js",
     "lint": "esw . --ignore-path .gitignore --ext '.js,.jsx'",
@@ -98,7 +98,7 @@
     "husky": "^0.13.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
-    "sinon": "^1.17.6",
+    "sinon": "^2.3.2",
     "sinon-chai": "^2.8.0",
     "supertest": "^3.0.0",
     "volleyball": "^1.4.1"
