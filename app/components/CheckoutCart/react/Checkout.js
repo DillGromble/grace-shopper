@@ -1,12 +1,12 @@
 import React from 'react'
-import Form from './Form'
+import AddressForm from './AddressForm'
 import {connect} from 'react-redux'
 
 const Checkout = props => (
   <div>
     <div>
       <h1>Here's the checkout page, buy stuff now!</h1>
-        <Form></Form>
+        <AddressForm />
     </div>
     <div>
       <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
