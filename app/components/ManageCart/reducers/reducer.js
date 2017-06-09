@@ -2,7 +2,7 @@ import axios from 'axios'
 
 /* -------------------------------ACTIONS------------------------------------ */
 const SET_CART = 'SET_CART'
-const LOAD_ITEMS = 'LOAD_ITEMS'
+const GET_CART = 'GET_CART'
 const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
@@ -11,7 +11,7 @@ const LOGIN_ACTION = 'LOGIN_ACTION'
 /* ---------------------------ACTION CREATORS-------------------------------- */
 const setCart = (user) => ({type: SET_CART, cartId: user.id})
 
-const loadItems = items => ({type: LOAD_ITEMS, items})
+const getCart = currentCart => ({type: GET_CART, currentCart})
 
 const addItem = item => ({type: ADD_ITEM, item})
 
@@ -21,7 +21,7 @@ const updateItem = item => ({type: UPDATE_ITEM_QUANTITY, item})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
-  items: [],
+  currentCart: {},
 }
 
 /* -------------------------------REDUCER------------------------------------ */
@@ -31,8 +31,8 @@ const reducer = (state = initialState, action) => {
   case SET_CART:
     newState.id = action.id
     break
-  case LOAD_ITEMS:
-    newState.items = action.items
+  case GET_CART:
+    newState.currentCart = action.currentCart
     break
   case ADD_ITEM:
     newState.cartItems = [...newState.cartItems, action.item]
@@ -57,7 +57,7 @@ export const setCartId = (cartId) => (dispatch) => {
 export const retrieveItems = (cartId) => (dispatch) => {
   axios.get(`/api/cart/${cartId}/products`, cartId)
   .then(res => res.data)
-  .then(cart => dispatch(loadItems(cart)))
+  .then(cart => dispatch(getCart(cart)))
   .catch(console.error.bind(console))
 }
 
