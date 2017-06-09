@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = props => (
+const AddressForm = props => (
   <div>
     <h2>Please complete order details:</h2>
     <form label="shippingAddress">
@@ -13,4 +13,4 @@ const Form = props => (
   </div>
 )
 
-export default Form
+export default AddressForm
