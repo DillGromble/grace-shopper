@@ -10,6 +10,7 @@ module.exports = require('express').Router()
       Cart.findOrCreate({where: {user_id: req.params.id}})
       .then(cart => res.status(201).json(cart))
       .catch(next))
+
   .get('/:id/products',
       (req, res, next) =>
         Cart.findOne({where: {user_id: req.params.id}})
@@ -19,6 +20,7 @@ module.exports = require('express').Router()
           res.status(201).json(cartItems)
         })
         .catch(next))
+
   .put('/:id/products',
       (req, res, next) =>
         Cart.findOne({where: {user_id: req.params.id}})
