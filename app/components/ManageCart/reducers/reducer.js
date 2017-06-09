@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
     newState.cart = [...newState.cart, action.item]
     break
   case REMOVE_ITEM:
-    newState.cart.filter(action.item)
+    newState.cart.filter(action.item.id)
     break
   default:
     return state
@@ -68,7 +68,7 @@ export const addToCart = (item, cartId) => (dispatch) => {
 }
 
 export const removeFromCart = (item, cartId) => (dispatch) => {
-  axios.put(`/api/cart/${cartId}/products`, item)
+  axios.delete(`/api/cart/${cartId}/products`, item)
   .then(() => dispatch(removeItem(item)))
   .catch(console.error.bind(console))
 }

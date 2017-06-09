@@ -42,3 +42,21 @@ module.exports = require('express').Router()
           })
         })
         .catch(next))
+  .delete('/:id/products',
+      (req, res, next) =>
+        Cart.findOne({where: {user_id: req.params.id}})
+        .then(cart => {
+          if (!cart) return res.status(500).json("You don't have a cart.")
+          return InCart.findOne({
+            where: {
+              cart_id: cart.id,
+              product_id: req.body.id
+            }
+          })
+          .then(foundIncart => {
+            if (!foundIncart) return res.status(500).json('No item to remove.')
+            return foundIncart.destroy()
+            .then(() => res.status(204).json('Removed item.'))
+          })
+        })
+        .catch(next))
