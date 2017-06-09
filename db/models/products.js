@@ -23,7 +23,7 @@ module.exports = db => db.define('products', {
     defaultValue: 1
   },
   type: {
-    type: ENUM('Decorations', 'Apparel', 'Gifts', 'Misc'),
+    type: ENUM('Decorations', 'Clothing', 'Home', 'Outdoor Entertaining', 'Gifts', 'Misc'),
   }
 })
 
