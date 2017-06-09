@@ -10,7 +10,7 @@ const ManageCart = (props) => (
       <div className="col-xs-4"><h3>Quantity</h3></div>
     </div>
     <ul>
-      {Array.isArray(props.cartItems) && props.cartItems.map(item => (
+      {Array.isArray(props.cart) && props.cart.map(item => (
         <div key={item.id}>
           <li>
             <div className="col-xs-4">{item.name}</div>
@@ -21,7 +21,7 @@ const ManageCart = (props) => (
       ))}
     </ul>
     <div>
-      <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
+      <h1>Total Price: ${Array.isArray(props.cart) && props.cart.reduce((total, item) => {
         total += item.price * item.quantity
         return total
       }, 0)}

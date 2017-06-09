@@ -9,7 +9,7 @@ const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 const LOGIN_ACTION = 'LOGIN_ACTION'
 
 /* ---------------------------ACTION CREATORS-------------------------------- */
-const setCart = (user) => ({type: SET_CART, cartId: user.id})
+const setCart = (cart) => ({type: SET_CART, cartId: cart.id})
 
 const loadItems = items => ({type: LOAD_ITEMS, items})
 
@@ -21,8 +21,8 @@ const updateItem = item => ({type: UPDATE_ITEM_QUANTITY, item})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
-  cartItems: [],
-  cartId: 0 // hardcode for testing, 0 by default
+  cart: [],
+  id: 1 // hardcode for testing, 0 by default
 }
 
 /* -------------------------------REDUCER------------------------------------ */
@@ -30,17 +30,16 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
   case SET_CART:
-    newState.cartId = action.id
+    newState.id = action.id
     break
   case LOAD_ITEMS:
-    newState.cartItems = action.items
+    newState.cart = action.items
     break
   case ADD_ITEM:
-    newState.cartItems = [...newState.cartItems, action.item]
+    newState.cart = [...newState.cart, action.item]
     break
   case REMOVE_ITEM:
-    const index = newState.cartItems.findIndex(action.item)
-    newState.cartItems.slice(index, 1)
+    newState.cart.filter(action.item.id)
     break
   default:
     return state
@@ -63,16 +62,14 @@ export const retrieveItems = (cartId) => (dispatch) => {
 }
 
 export const addToCart = (item, cartId) => (dispatch) => {
-  item.amount = 1
   axios.put(`/api/cart/${cartId}/products`, item)
-  .then(res => dispatch(addItem(item)))
+  .then(() => dispatch(addItem(item)))
   .catch(console.error.bind(console))
 }
 
 export const removeFromCart = (item, cartId) => (dispatch) => {
-  item.amount = -1
-  axios.put(`/api/cart/${cartId}/products`, item)
-  .then(res => dispatch(removeItem(item)))
+  axios.delete(`/api/cart/${cartId}/products`, item)
+  .then(() => dispatch(removeItem(item)))
   .catch(console.error.bind(console))
 }
 
