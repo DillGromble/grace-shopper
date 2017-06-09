@@ -14,4 +14,3 @@ module.exports = require('express').Router()
       .then(orders => res.send(orders))
       .catch(next)
   )
-

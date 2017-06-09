@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-export function ManageCart (props) {
+export function ManageCart(props) {
   return (
     <div>
       <h1>Your Cart Items:</h1>
