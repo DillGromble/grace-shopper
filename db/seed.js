@@ -1,17 +1,16 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Order, Products, Holiday, Promise} = db
+    , {User, Order, Products, Holiday, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    things: things(),
-    orders: orders()
+    orders: orders(),
+    holiday: holidays(),
+    products: products()
   }
-
-  seeded.favorites = favorites(seeded)
 
   return Promise.props(seeded)
 }
@@ -49,6 +48,19 @@ const users = seed(User, {
   }
 })
 
+const products = seed(Products, {
+  christmasTree: {name: 'Christmas Tree', price: 100, type: 'Home'},
+  stockings: {name: 'Holiday Stocking', price: 10, type: 'Home'},
+  wreath: {name: 'Wreath', price: 20, type: 'Home'},
+  wrappingPaper: {name: 'Wrapping Paper', price: 10, type: 'Home'},
+  uglySweater: {name: 'Ugly Sweater', price: 50, type: 'Clothing'},
+  bananaCostume: {name: 'Banana Costume', price: 50, type: 'Clothing'},
+  astronautCostume: {name: 'Astronaut Costume', price: 50, type: 'Clothing'},
+  Grill: {name: 'Char-Broil Gas Grill', price: 100, type: 'Outdoor Entertaining'},
+  iceCreamMaker: {name: 'Ice Cream Maker', price: 50, type: 'Outdoor Entertaining'},
+  inflatableTurtle: {name: 'Inflatable Turtle', price: 10, type: 'Outdoor Entertaining'},
+})
+
 const holidays = seed(Holiday, {
   christmas: { name: 'Christmas' },
   thanksgiving: { name: 'Thanksgiving' },
@@ -73,45 +85,6 @@ const orders = seed(Order, {
     }]
   }
 })
-
-const things = seed(Thing, {
-  surfing: {name: 'surfing'},
-  smiting: {name: 'smiting'},
-  puppies: {name: 'puppies'},
-})
-
-const favorites = seed(Favorite,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  //
-  // This lets us reference previously-created rows in order to create the join
-  // rows. We can reference them by the names we used above (which is why we used
-  // Objects above, rather than just arrays).
-  ({users, things}) => ({
-    // The easiest way to seed associations seems to be to just create rows
-    // in the join table.
-    'obama loves surfing': {
-      user_id: users.barack.id,    // users.barack is an instance of the User model
-                                   // that we created in the user seed above.
-                                   // The seed function wires the promises so that it'll
-                                   // have been created already.
-      thing_id: things.surfing.id  // Same thing for things.
-    },
-    'god is into smiting': {
-      user_id: users.god.id,
-      thing_id: things.smiting.id
-    },
-    'obama loves puppies': {
-      user_id: users.barack.id,
-      thing_id: things.puppies.id
-    },
-    'god loves puppies': {
-      user_id: users.god.id,
-      thing_id: things.puppies.id
-    },
-  })
-)
 
 if (module === require.main) {
   db.didSync
@@ -181,4 +154,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, orders, favorites})
+module.exports = Object.assign(seed, {users, orders, holidays, products})
