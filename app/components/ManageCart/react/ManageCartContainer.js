@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import ManageCart from './ManageCart'
 
 const mapStateToProps = state => ({
-  cartItems: state.cartItems.cartItems,
-  cartId: state.cartItems.cartId,
+  items: state.cart.items,
+  id: state.cart.id,
   products: state.products.products
 })
 
