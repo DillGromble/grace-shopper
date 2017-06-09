@@ -10,15 +10,22 @@ module.exports = require('express').Router()
       Cart.findOrCreate({where: {user_id: req.params.id}})
       .then(cart => res.status(201).json(cart))
       .catch(next))
-  .get('/:id/products',
-      (req, res, next) =>
-        Cart.findOne({where: {user_id: req.params.id}})
-        .then(cart => {
-          if (!cart) return res.json('Sign up to continue shopping.')
-          const cartItems = cart.sortCartForCheckout(cart)
-          res.status(201).json(cartItems)
-        })
-        .catch(next))
+  .get('/:id/products',  // api/cart/1/products
+    (req, res, next) =>
+      Cart.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(currentCart => {
+        if (!currentCart) {
+          res.json('Your cart is empty!')
+        } else {
+          res.json(currentCart)
+        }
+      })
+      .catch(next)
+  )
   .put('/:id/products',
       (req, res, next) =>
         Cart.findOne({where: {user_id: req.params.id}})
