@@ -8,7 +8,9 @@ function seedEverything() {
   const seeded = {
     users: users(),
     things: things(),
-    orders: orders()
+    orders: orders(),
+    holiday: holidays(),
+    products: products()
   }
 
   seeded.favorites = favorites(seeded)
@@ -47,6 +49,19 @@ const users = seed(User, {
     email: 'dennis@dennis.com',
     password: '1234'
   }
+})
+
+const products = seed(Products, {
+  christmasTree: {name: 'Christmas Tree', price: 100, type: 'Home'},
+  stockings: {name: 'Holiday Stocking', price: 10, type: 'Home'},
+  wreath: {name: 'Wreath', price: 20, type: 'Home'},
+  wrappingPaper: {name: 'Wrapping Paper', price: 10, type: 'Home'},
+  uglySweater: {name: 'Ugly Sweater', price: 50, type: 'Clothing'},
+  bananaCostume: {name: 'Banana Costume', price: 50, type: 'Clothing'},
+  astronautCostume: {name: 'Astronaut Costume', price: 50, type: 'Clothing'},
+  Grill: {name: 'Char-Broil Gas Grill', price: 100, type: 'Outdoor Entertaining'},
+  iceCreamMaker: {name: 'Ice Cream Maker', price: 50, type: 'Outdoor Entertaining'},
+  inflatableTurtle: {name: 'Inflatable Turtle', price: 10, type: 'Outdoor Entertaining'},
 })
 
 const holidays = seed(Holiday, {
