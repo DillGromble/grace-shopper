@@ -5,24 +5,23 @@ const Cart = db.model('cart')
 const InCart = db.model('inCart')
 
 module.exports = require('express').Router()
-  .get('/:id',
-    (req, res, next) =>
-      Cart.findById(req.params.id)
-      .then(cart => {
-        if (!cart) res.status(404).send('Cart doesn\'t exist!')
-        else res.status(201).json(cart)
-      })
-      .catch(next))
 
-  .get('/:id/products',
-      (req, res, next) =>
-        Cart.findOne({where: {user_id: req.params.id}})
-        .then(cart => {
-          if (!cart) return res.json('Sign up to continue shopping.')
-          const cartItems = cart.sortCartForCheckout(cart)
-          res.status(201).json(cartItems)
-        })
-        .catch(next))
+  .get('/:id/products',  // api/cart/1/products
+    (req, res, next) =>
+      Cart.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(currentCart => {
+        if (!currentCart) {
+          res.json('Your cart is empty!')
+        } else {
+          res.json(currentCart)
+        }
+      })
+      .catch(next)
+  )
 
   .put('/:id/products',
       (req, res, next) =>

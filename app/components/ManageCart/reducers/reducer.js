@@ -21,8 +21,7 @@ const updateItem = item => ({type: UPDATE_ITEM_QUANTITY, item})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
-  cartItems: [],
-  cartId: 0 // hardcode for testing, 0 by default
+  items: [],
 }
 
 /* -------------------------------REDUCER------------------------------------ */
@@ -30,10 +29,10 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
   case SET_CART:
-    newState.cartId = action.id
+    newState.id = action.id
     break
   case LOAD_ITEMS:
-    newState.cartItems = action.items
+    newState.items = action.items
     break
   case ADD_ITEM:
     newState.cartItems = [...newState.cartItems, action.item]
@@ -56,7 +55,7 @@ export const setCartId = (cartId) => (dispatch) => {
   .catch(console.error.bind(console))
 }
 export const retrieveItems = (cartId) => (dispatch) => {
-  axios.get(`/api/cart/${cartId}/products`)
+  axios.get(`/api/cart/${cartId}/products`, cartId)
   .then(res => res.data)
   .then(cart => dispatch(loadItems(cart)))
   .catch(console.error.bind(console))

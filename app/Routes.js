@@ -30,11 +30,11 @@ const mapDispatch = dispatch => ({
   loadProducts: () => {
     dispatch(fetchAllProducts())
   },
-  loadCartItems: (cartId) => {
-    dispatch(retrieveItems(cartId.params.id))
+  loadCartItems: (nextRouterState) => {
+    dispatch(retrieveItems(nextRouterState.params.id))
   },
-  loadCheckout: (cartId) => {
-    dispatch(retrieveItems(cartId.params.id))
+  loadCheckout: (nextRouterState) => {
+    dispatch(retrieveItems(nextRouterState.params.id))
     // dispatch user info to update info state
   }
 })
