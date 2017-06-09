@@ -2,16 +2,19 @@ import React from 'react'
 import {Link} from 'react-router'
 
 export function ManageCart(props) {
+  const userName = props.userName
+  const itemsInCart = props.itemsInCart
+
   return (
     <div>
-      <h1>Your Cart Items:</h1>
+      <h3>Hi, {userName}!  Below is a summary of your order:</h3>
       <div>
         <div className="col-xs-4"><h3>Item</h3></div>
         <div className="col-xs-4"><h3>Price</h3></div>
         <div className="col-xs-4"><h3>Quantity</h3></div>
       </div>
       <ul>
-        {Array.isArray(props.cartItems) && props.cartItems.map(item => (
+        {itemsInCart && itemsInCart.map(item => (
           <div key={item.id}>
             <li>
               <div className="col-xs-4">{item.name}</div>
@@ -22,11 +25,11 @@ export function ManageCart(props) {
         ))}
       </ul>
       <div>
-        <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
+        <h3>Total Price: ${itemsInCart && itemsInCart.reduce((total, item) => {
           total += item.price * item.quantity
           return total
         }, 0)}
-        </h1>
+        </h3>
       </div>
       <Link to={`/${props.cartId}/checkout`}><h2>Proceed To Checkout...</h2></Link>
     </div>
