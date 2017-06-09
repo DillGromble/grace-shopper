@@ -7,8 +7,11 @@ const InCart = db.model('inCart')
 module.exports = require('express').Router()
   .get('/:id',
     (req, res, next) =>
-      Cart.findOrCreate({where: {user_id: req.params.id}})
-      .then(cart => res.status(201).json(cart))
+      Cart.findById(req.params.id)
+      .then(cart => {
+        if (!cart) res.status(404).send('Cart doesn\'t exist!')
+        else res.status(201).json(cart)
+      })
       .catch(next))
 
   .get('/:id/products',

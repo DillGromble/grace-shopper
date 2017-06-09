@@ -8,27 +8,22 @@ import sinon from 'sinon'
 const db = require('APP/db')
 const Cart = db.model('cart')
 
-const express = require('express')
 const request = require('supertest')
+const app = require('./start')
 
 /* global describe it beforeEach afterEach before */
 
-describe.only('loading express', () => {
+describe.only('Cart API:', () => {
   var server
   before('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
-  beforeEach(() => {
-    server = request(require('./start'))
-  })
-
   it('responds to /:id', (done) => {
-
-    server
+    request(app)
       .get('/api/cart/1')
       .set('Accept', 'application/json')
       .expect((res) => {
-        console.log('get stuff')
+        console.log(res.data)
       })
       .expect(201, done)
   })
