@@ -62,7 +62,6 @@ export const retrieveItems = (cartId) => (dispatch) => {
 }
 
 export const addToCart = (item, cartId) => (dispatch) => {
-  console.log(item)
   axios.put(`/api/cart/${cartId}/products`, item)
   .then(res => dispatch(addItem(item)))
   .catch(console.error.bind(console))

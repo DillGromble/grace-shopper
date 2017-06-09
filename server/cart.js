@@ -6,7 +6,7 @@ const InCart = db.model('inCart')
 
 module.exports = require('express').Router()
 
-  .get('/:id/products',  // api/cart/1/products
+  .get('/:id/products',
     (req, res, next) =>
       Cart.findOne({
         where: {

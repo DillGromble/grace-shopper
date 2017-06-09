@@ -23,6 +23,8 @@ module.exports = {
     "new-parens": "off",
     "indent": ["error", 2, {SwitchCase: 0}],
     "arrow-body-style": ["warn", "as-needed"],
+    "padded-blocks": "off",
+    "space-in-parens": "off",
 
     "no-unused-vars": "off",
     "react/jsx-uses-react": "error",
