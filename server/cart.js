@@ -20,8 +20,9 @@ module.exports = require('express').Router()
   )
 
   .put('/:id/products',
-    (req, res, next) =>
-      Cart.findById(req.params.id)
+    (req, res, next) => {
+      console.log(req.session)
+      return Cart.findById(req.params.id)
       .then(cart => {
         if (!cart) {
           console.log(req.params.id)
@@ -33,4 +34,5 @@ module.exports = require('express').Router()
         }
       })
       .catch(next)
+    }
   )

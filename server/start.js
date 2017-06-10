@@ -7,6 +7,10 @@ const {resolve} = require('path')
 const passport = require('passport')
 const PrettyError = require('pretty-error')
 const finalHandler = require('finalhandler')
+
+const db = require('APP/db')
+const Cart = db.model('cart')
+
 // PrettyError docs: https://www.npmjs.com/package/pretty-error
 
 // Bones has a symlink from node_modules/APP to the root of the app.
@@ -39,6 +43,15 @@ module.exports = app
     name: 'session',
     keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
   }))
+
+  .use((req, res, next) => {
+    if (!req.session.cart) {
+      Cart.create()
+      .then(cart => req.session.cart = cart.id)
+      .catch(next)
+    }
+    next()
+  })
 
   // Body parsing middleware
   .use(bodyParser.urlencoded({ extended: true }))
