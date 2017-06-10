@@ -31,19 +31,19 @@ describe('Cart API:', () => {
     .then( p => product = p)
   )
 
-  describe('returns items in a users cart:', () => {
+  xdescribe('returns items in a users cart:', () => {
     beforeEach(() => cart.addProduct(product))
 
-    it('returns items if cart exists:', (done) => {
+    it('returns items in cart:', (done) => {
       app
-        .get(`/api/cart/${cart.id}/products`)
+        .get(`/api/cart/products`)
         .expect( res => {
           expect(res.body.products).to.have.length(1)
         })
         .expect(200, done)
     })
 
-    it('fails if cart doesn\'t exist', (done) => {
+    xit('fails if cart doesn\'t exist', (done) => {
       app
         .get(`/api/cart/000/products`)
         .send(product)
@@ -51,16 +51,16 @@ describe('Cart API:', () => {
     })
   })
 
-  describe.only('adds an item to a users cart:', () => {
+  xdescribe('adds an item to a users cart:', () => {
 
     it('adds one item to the cart:', (done) => {
       app
-        .put(`/api/cart/${cart.id}/products`)
+        .put(`/api/cart/products`)
         .send(product)
         .expect(200, done)
     })
 
-    it('fails if cart doesn\'t exist', (done) => {
+    xit('fails if cart doesn\'t exist', (done) => {
       app
         .put(`/api/cart/000/products`)
         .send(product)

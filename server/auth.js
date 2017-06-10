@@ -97,7 +97,7 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
-    User.findOne({
+    return User.findOne({
       where: {email},
       attributes: {include: ['password_digest']}
     })

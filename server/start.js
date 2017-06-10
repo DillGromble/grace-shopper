@@ -8,8 +8,7 @@ const passport = require('passport')
 const PrettyError = require('pretty-error')
 const finalHandler = require('finalhandler')
 
-const db = require('APP/db')
-const Cart = db.model('cart')
+const { Cart } = require('APP/db')
 
 // PrettyError docs: https://www.npmjs.com/package/pretty-error
 
@@ -50,6 +49,7 @@ module.exports = app
       .then(cart => req.session.cart = cart.id)
       .catch(next)
     }
+    console.log(req.session)
     next()
   })
 
