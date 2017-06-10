@@ -10,29 +10,33 @@ module.exports = require('express').Router()
     (req, res, next) =>
       Cart.findById(req.params.id)
       .then(currentCart => {
-        if (!currentCart) {
-          res.json('Your cart is empty!')
-        } else {
-          res.json(currentCart)
-        }
+        if (!currentCart) return next('Cart with that id not found')
+        else res.json(currentCart)
       })
       .catch(next)
   )
 
   .put('/:id/products',
     (req, res, next) => {
-      console.log(req.session)
-      return Cart.findById(req.params.id)
+      if (!req.body.price) return next('Invalid data type')
+
+      Cart.findById(req.params.id)
       .then(cart => {
         if (!cart) {
-          console.log(req.params.id)
-          console.log(req.body.product)
-          res.sendStatus(404)
+          return next('Cart with that id not found')
         } else {
-          cart.addProduct(req.body.item).then( add => console.log(add))
-          res.sendStatus(200)
+          cart.addProduct(req.body.id)
+          .then( add => {
+            if (!add) res.status(500).send('Something went wrong')
+            else res.sendStatus(200)
+          })
         }
       })
       .catch(next)
     }
   )
+
+  .use( (err, req, res, next) => {
+    console.error(err)
+    res.status(404).send('Not found')
+  })
