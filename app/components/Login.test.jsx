@@ -8,7 +8,7 @@ chai.use(require('sinon-chai'))
 import {Login} from './Login'
 
 /* global describe xdescribe it beforeEach */
-xdescribe('<Login />', () => {
+describe('<Login />', () => {
   let root
   beforeEach('render the root', () =>
     root = shallow(<Login/>)
@@ -30,7 +30,7 @@ xdescribe('<Login />', () => {
     expect(submit).to.have.length(1)
   })
 
-  xdescribe('when submitted', () => {
+  describe('when submitted', () => {
     const login = spy()
     const root = shallow(<Login login={login}/>)
     const submitEvent = {

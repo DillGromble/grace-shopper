@@ -49,7 +49,6 @@ module.exports = app
       .then(cart => req.session.cart = cart.id)
       .catch(next)
     }
-    console.log(req.session)
     next()
   })
 

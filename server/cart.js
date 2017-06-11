@@ -16,7 +16,9 @@ module.exports = require('express').Router()
     .catch(next)
   })
 
-  .get('/products', (req, res, next) => res.status(200).send(req.cart.getProducts()))
+  .get('/products', (req, res, next) => {
+    res.status(200).json(req.cart)
+  })
 
   .put('/products/add', (req, res, next) =>
     InCart.findOrCreate({
