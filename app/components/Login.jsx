@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Login = ({ login, mergeSessionCartToUser }) => (
+export const Login = ({ login }) => (
   <form onSubmit={evt => {
     evt.preventDefault()
     login(evt.target.username.value, evt.target.password.value)
