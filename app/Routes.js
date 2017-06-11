@@ -19,7 +19,7 @@ const Routes = props => (
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
-        <Route path="/cart/:id/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
+        <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/:id/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
       <Route path='*' component={NotFound} />

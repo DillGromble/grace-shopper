@@ -6,34 +6,38 @@ const InCart = db.model('inCart')
 
 module.exports = require('express').Router()
 
-  .get('/products',
-    (req, res, next) =>
-      Cart.findById(req.session.cart)
-      .then(currentCart => {
-        if (!currentCart) return next('Cart with that id not found')
-        else res.json(currentCart)
-      })
-      .catch(next)
+  .use('/products', (req, res, next) => {
+    Cart.findById(req.session.cart)
+    .then(cart => {
+      req.cart = cart
+      if (!cart) return next('Cart with that id not found')
+      next()
+    })
+    .catch(next)
+  })
+
+  .get('/products', (req, res, next) => res.status(200).send(req.cart.getProducts()))
+
+  .put('/products/add', (req, res, next) =>
+    InCart.findOrCreate({
+      where: { cart_id: req.cart.id, product_id: req.body.id },
+      defaults: { cart_id: req.cart.id, product_id: req.body.id }
+    })
+    .spread( (row, wasMade) => {
+      if (!wasMade) return row.update({ quantity: row.quantity + 1 })
+    })
+    .then( () => res.sendStatus(200))
+    .catch(next)
   )
 
-  .put('/products',
-    (req, res, next) => {
-      if (!req.body.price) return next('Invalid data type')
-
-      return Cart.findById(req.session.cart)
-      .then(cart => {
-        if (!cart) {
-          return next('Cart with that id not found')
-        } else {
-          return cart.addProduct(req.body.id)
-          .then( add => {
-            if (!add) res.status(500).send('Something went wrong')
-            else res.sendStatus(200)
-          })
-        }
-      })
-      .catch(next)
-    }
+  .put('/products/sub', (req, res, next) =>
+    InCart.findOne({ where: { cart_id: req.cart.id, product_id: req.body.id } })
+    .then( row => {
+      if (row.quantity === 1) row.destroy()
+      else return row.update({ quantity: row.quantity - 1 })
+    })
+    .then( () => res.sendStatus(200))
+    .catch(next)
   )
 
   .put('/mergeCart/:userId', (req, res, next) => {
@@ -59,7 +63,7 @@ module.exports = require('express').Router()
     .catch(next)
   })
 
-  .use( (err, req, res, next) => {
+  .use((err, req, res, next) => {
     console.error(err)
     res.status(404).send('Not found')
   })

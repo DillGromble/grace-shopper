@@ -138,6 +138,7 @@ auth.get('/login/:strategy', (req, res, next) =>
 )
 
 auth.post('/logout', (req, res) => {
+  delete req.session.cart
   req.logout()
   res.redirect('/api/auth/whoami')
 })

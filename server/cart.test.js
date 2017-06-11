@@ -17,7 +17,7 @@ const app = request(require('./start'))
 
 /* global describe xit it xdescribe beforeEach afterEach before */
 
-describe('Cart API:', () => {
+describe.only('Cart API:', () => {
   var server, user, cart, product
 
   before('Await database sync', () => db.didSync)
@@ -31,7 +31,7 @@ describe('Cart API:', () => {
     .then( p => product = p)
   )
 
-  xdescribe('returns items in a users cart:', () => {
+  describe('returns items in a users cart:', () => {
     beforeEach(() => cart.addProduct(product))
 
     it('returns items in cart:', (done) => {
