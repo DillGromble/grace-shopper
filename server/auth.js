@@ -1,7 +1,6 @@
 const app = require('APP'), {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-
 const {User, OAuth} = require('APP/db')
 const auth = require('express').Router()
 
@@ -53,19 +52,6 @@ OAuth.setupStrategy({
     clientID: env.GOOGLE_CLIENT_ID,
     clientSecret: env.GOOGLE_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
-  },
-  passport
-})
-
-// Github needs the GITHUB_CLIENT_ID AND GITHUB_CLIENT_SECRET
-// environment variables.
-OAuth.setupStrategy({
-  provider: 'github',
-  strategy: require('passport-github2').Strategy,
-  config: {
-    clientID: env.GITHUB_CLIENT_ID,
-    clientSecret: env.GITHUB_CLIENT_SECRET,
-    callbackURL: `${app.baseUrl}/api/auth/login/github`,
   },
   passport
 })
@@ -132,7 +118,9 @@ auth.post('/signup/local', (req, res, next) =>
     if (!user) User.create(req.body)
     return user
   })
-  .then(user => res.status(201).json(user))
+  .then(user => {
+    res.status(201).json(user)
+  })
   .catch(next)
 )
 // POST requests for local login:
