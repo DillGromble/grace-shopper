@@ -46,7 +46,7 @@ module.exports = app
   .use((req, res, next) =>
     Cart.findOrCreate({ where: { id: req.session.cart } })
     .spread((cart, isNew) => {
-      req.session.cart = cart.id
+      if (isNew) req.session.cart = cart.id
       next()
       return null
     })
