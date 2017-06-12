@@ -5,14 +5,26 @@ const reducer = (state=null, action) => {
   switch (action.type) {
   case AUTHENTICATED:
     return action.user
+  case CREATE:
+    return action.user
+  default:
+    return state
   }
-  return state
 }
 
+const CREATE = 'CREATE_USER'
 const AUTHENTICATED = 'AUTHENTICATED'
 export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
+export const create = user => ({type: CREATE, user})
+
+export const signup = (name, email, password) =>
+  dispatch =>
+    axios.post('/api/auth/signup/local',
+      {name, email, password})
+    .then(user => dispatch(create(user)))
+    .catch(err => console.error(`Creating new account unsuccesful`, err))
 
 export const login = (username, password) =>
   dispatch =>
