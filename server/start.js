@@ -43,14 +43,15 @@ module.exports = app
     keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
   }))
 
-  .use((req, res, next) => {
-    if (!req.session.cart) {
-      Cart.create()
-      .then(cart => req.session.cart = cart.id)
-      .catch(next)
-    }
-    next()
-  })
+  .use((req, res, next) =>
+    Cart.findOrCreate({ where: { id: req.session.cart } })
+    .spread((cart, isNew) => {
+      req.session.cart = cart.id
+      next()
+      return null
+    })
+    .catch(next)
+  )
 
   // Body parsing middleware
   .use(bodyParser.urlencoded({ extended: true }))

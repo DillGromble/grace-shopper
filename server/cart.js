@@ -12,6 +12,7 @@ module.exports = require('express').Router()
       req.cart = cart
       if (!cart) return next('Cart with that id not found')
       next()
+      return null
     })
     .catch(next)
   })
