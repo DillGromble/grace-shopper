@@ -20,7 +20,7 @@ module.exports = require('express').Router()
   .get('/products', (req, res, next) =>
     req.cart.getProducts()
     .then(items => res.status(200).json(items))
-   )
+  )
 
   .put('/products/add', (req, res, next) =>
     InCart.findOrCreate({
