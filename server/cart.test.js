@@ -18,7 +18,7 @@ const app = require('./start')
 
 /* global describe xit it xdescribe beforeEach afterEach before */
 
-describe.only('/api/cart:', () => {
+describe('/api/cart:', () => {
   var server, user, cart, product
 
   before('Await database sync', () => db.didSync)
