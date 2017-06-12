@@ -16,7 +16,7 @@ const AllProducts = props => (
                   <span>{ product.name }</span>
                   <form onSubmit={ (e) => {
                     e.preventDefault()
-                    props.dispatchToCart(product, props.cartId)
+                    props.dispatchToCart(product)
                   }
                   }>
                     <button>Add to Cart</button>
@@ -30,13 +30,12 @@ const AllProducts = props => (
   </div>
 )
 const mapState = state => ({
-  products: state.products.products,
-  cartId: state.cartItems.cartId
+  products: state.products.products
 })
 
 const mapDispatch = dispatch => ({
-  dispatchToCart: (item, cartId) => {
-    dispatch(addToCart(item, cartId))
+  dispatchToCart: (item) => {
+    dispatch(addToCart(item))
   }
 })
 
