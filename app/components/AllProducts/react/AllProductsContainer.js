@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 
 const AllProducts = props => (
@@ -13,13 +14,15 @@ const AllProducts = props => (
               <img src="http://lorempixel.com/250/250/nature" />
               <div className="caption">
                 <h5>
-                  <span>{ product.name }</span>
+                  <Link to={`/products/${product.id}`}>{ product.name }</Link>
                   <form onSubmit={ (e) => {
                     e.preventDefault()
                     props.dispatchToCart(product)
                   }
                   }>
-                    <button>Add to Cart</button>
+                    <button>
+                      <Link to={`/cart/products`}>Add to Cart</Link>
+                    </button>
                   </form>
                 </h5>
               </div>

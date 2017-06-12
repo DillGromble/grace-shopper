@@ -7,4 +7,10 @@ products.get('/', (req, res, next) => {
   .catch(err => console.error(err))
 })
 
+products.get('/:id', (req, res, next) => {
+  Products.findById(req.params.id)
+  .then(product => res.json(product))
+  .catch(err => console.error(err))
+})
+
 module.exports = products
