@@ -28,6 +28,7 @@ const Navbar = ({user}) => (
 
         <ul className="nav navbar-nav navbar-right">
           <li className="active">{user ? <WhoAmI/> : <Login/>}</li>
+          <button><Link to="/Signup">Signup</Link></button>
         </ul>
       </div>
     </div>
@@ -39,5 +40,3 @@ import {connect} from 'react-redux'
 export default connect(
   ({ auth }) => ({ user: auth })
 )(Navbar)
-
-// {user ? <div><WhoAmI/><a href="#">Logout</a></div> : <Login/>}
