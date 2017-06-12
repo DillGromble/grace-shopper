@@ -17,9 +17,10 @@ module.exports = require('express').Router()
     .catch(next)
   })
 
-  .get('/products', (req, res, next) => {
-    res.status(200).json(req.cart)
-  })
+  .get('/products', (req, res, next) =>
+    req.cart.getProducts()
+    .then(items => res.status(200).json(items))
+  )
 
   .put('/products/add', (req, res, next) =>
     InCart.findOrCreate({
@@ -28,8 +29,9 @@ module.exports = require('express').Router()
     })
     .spread( (row, wasMade) => {
       if (!wasMade) return row.update({ quantity: row.quantity + 1 })
+      else return row
     })
-    .then( () => res.sendStatus(200))
+    .then( (newRow) => res.json(newRow))
     .catch(next)
   )
 
@@ -39,7 +41,7 @@ module.exports = require('express').Router()
       if (row.quantity === 1) row.destroy()
       else return row.update({ quantity: row.quantity - 1 })
     })
-    .then( () => res.sendStatus(200))
+    .then( (rowUpdate) => res.json(rowUpdate))
     .catch(next)
   )
 
