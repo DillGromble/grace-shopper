@@ -60,6 +60,7 @@ export const addToCart = (item) => (dispatch) => {
 export const removeFromCart = (item, cartId) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
   .then( res => {
+
     if (res.data.product_id) dispatch(removeItem(item))
   })
   .catch(console.error.bind(console))
