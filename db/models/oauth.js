@@ -52,11 +52,14 @@ module.exports = db => {
         _saveProfile: oauth.save(),
       })
     })
-    .then(({ oauth, user }) => user ||
+    .then(({ oauth, user }) =>
+    user ||
       OAuth.User.create({
         name: profile.displayName,
+        email: profile.emails[0].value
       })
-      .then(user => db.Promise.props({
+      .then(user =>
+      db.Promise.props({
         user,
         _setOauthUser: oauth.setUser(user)
       }))
