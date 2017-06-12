@@ -52,8 +52,7 @@ export const retrieveItems = () => (dispatch) => {
 export const addToCart = (item) => (dispatch) => {
   axios.put(`/api/cart/products/add`, item)
   .then(res => {
-    // does this check need to happen if errors are thrown farther down the promise chain?
-    if (res.data === 'OK') dispatch(addItem(item))
+    if (res.data.product_id) dispatch(addItem(item))
   })
   .catch(console.error.bind(console))
 }
@@ -61,7 +60,7 @@ export const addToCart = (item) => (dispatch) => {
 export const removeFromCart = (item, cartId) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
   .then( res => {
-    if (res.data === 'OK') dispatch(removeItem(item))
+    if (res.data.product_id) dispatch(removeItem(item))
   })
   .catch(console.error.bind(console))
 }

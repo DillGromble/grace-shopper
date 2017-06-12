@@ -24,7 +24,7 @@ const Routes = props => (
         <Route path="/login" component={Login} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProductsAndUserCart} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
-        <Route path="/:id/checkout" component={Checkout} onEnter={props.loadCheckout} />
+        <Route path="/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
