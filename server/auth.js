@@ -122,6 +122,11 @@ passport.use(new (require('passport-local').Strategy)(
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
+auth.post('/signup/local', (req, res, next) =>
+  User.create(req.body)
+  .then(user => res.status(201).json(user))
+  .catch(next)
+)
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 

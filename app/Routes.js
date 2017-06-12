@@ -4,6 +4,8 @@ import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-
 
 import Root from './components/Root'
 import Jokes from './components/Jokes'
+import Signup from './components/Signup'
+import Login from './components/Login'
 
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer'
@@ -18,6 +20,8 @@ const Routes = props => (
       <Route path="/" component={Root}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProducts} />
         <Route path="/cart/:id/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/:id/checkout" component={Checkout} onEnter={props.loadCheckout} />
