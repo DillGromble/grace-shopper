@@ -14,6 +14,7 @@ const AllProducts = props => (
               <div className="caption">
                 <h5>
                   <span>{ product.name }</span>
+                  <p>{ product.price }</p>
                   <form onSubmit={ (e) => {
                     e.preventDefault()
                     props.dispatchToCart(product)
