@@ -4,11 +4,11 @@ import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 
 const Product = props => {
-  console.log('props:', props && props.currentProduct)
   return (
     <div>
       <h1>Product Page: {props.currentProduct.name}</h1>
       <img src="http://lorempixel.com/250/250/nature" />
+      <div id="customerReviews">X Reviews</div>
       <p>Quantity: {props.currentProduct.quantity}</p>
       <p>Price: ${props.currentProduct.price}</p>
       <button>
