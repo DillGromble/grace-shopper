@@ -10,6 +10,7 @@ module.exports = require('express').Router()
     Cart.findById(req.session.cart)
     .then(cart => {
       req.cart = cart
+      // console.log('session cart:', req.cart.dataValues)
       if (!cart) return next('Cart with that id not found')
       next()
       return null
@@ -18,7 +19,8 @@ module.exports = require('express').Router()
   })
 
   .get('/products', (req, res, next) => {
-    res.status(200).json(req.cart)
+    // console.log('req.cart:', req.cart.products)
+    res.status(200).json(req.cart.products)
   })
 
   .put('/products/add', (req, res, next) =>
@@ -28,8 +30,9 @@ module.exports = require('express').Router()
     })
     .spread( (row, wasMade) => {
       if (!wasMade) return row.update({ quantity: row.quantity + 1 })
+      else return row
     })
-    .then( () => res.sendStatus(200))
+    .then( (newRow) => res.json(newRow))
     .catch(next)
   )
 

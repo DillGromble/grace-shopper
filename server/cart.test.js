@@ -11,13 +11,14 @@ const db = require('APP/db')
 const Cart = db.model('cart')
 const User = db.model('users')
 const Products = db.model('products')
+const InCart = db.model('inCart')
 
 const request = require('supertest')
-const app = request(require('./start'))
+const app = require('./start')
 
 /* global describe xit it xdescribe beforeEach afterEach before */
 
-xdescribe('/api/cart:', () => {
+describe.only('/api/cart:', () => {
   var server, user, cart, product
 
   before('Await database sync', () => db.didSync)
@@ -32,30 +33,26 @@ xdescribe('/api/cart:', () => {
   )
 
   describe('returns items in a users cart:', () => {
-    beforeEach(() => cart.addProduct(product))
 
-    it('returns items in cart:', (done) => {
-      app
-        .get(`/api/cart/products`)
-        .expect( res => {
-          expect(res.body.products).to.have.length(1)
-        })
-        .expect(200, done)
-    })
+    beforeEach(() => server = request.agent(app))
 
-    xit('fails if cart doesn\'t exist', (done) => {
-      app
-        .get(`/api/cart/000/products`)
+    it('returns items in cart:', () =>
+      server
+        .put(`/api/cart/products/add`)
         .send(product)
-        .expect(404, done)
-    })
+        .then( () =>
+          server.get(`/api/cart/products`)
+          .expect(200)
+        )
+        .then(res => expect(res.body).to.have.length(1))
+    )
   })
 
-  describe('adds an item to a users cart:', () => {
+  xdescribe('adds an item to a users cart:', () => {
 
-    it('adds one item to the cart:', (done) => {
-      app
-        .put(`/api/cart/products`)
+    xit('adds one item to the cart:', (done) => {
+      request(app)
+        .put(`/api/cart/products/add`)
         .send(product)
         .expect(200, done)
     })
