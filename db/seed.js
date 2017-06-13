@@ -82,8 +82,6 @@ const products = seed(Products, {
   birdfeeder: {name: 'Birdfeeder', price: 400, type: 'Outdoor Entertaining', imageURL: 'http://ii.christmastreeshops.com/fcgi-bin/iipsrv.fcgi?FIF=/images/christmastreeshops/source/CTS/6107103_XXX_v1.tif&wid=2000&cvt=jpeg&_Colored%20House%20Shingle%20Roof%20Birdfeeder', description: 'This charming garden accent is for the birds. A shingled roof and colored accents bring character to our stylish birdhouse feeder.'},
 })
 
-
-
 const reviews = seed(Reviews, ({users}) => ({
   review1: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 1, user_id: 1},
 
