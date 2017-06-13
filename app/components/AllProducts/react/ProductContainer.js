@@ -11,9 +11,12 @@ const Product = props => (
       <p>Quantity: {props.currentProduct.quantity}</p>
       <p>Price: ${props.currentProduct.price}</p>
       <p>Description:{props.currentProduct.description}</p>
-      <button>
-        <Link to={`/cart/products`}>Add to Cart</Link>
-      </button>
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        props.dispatchToCart(props.currentProduct)
+      }}>
+        <button>Add to Cart</button>
+      </form>
       <br />
       <Link to='/products'>Continue Shopping</Link>
     </div>

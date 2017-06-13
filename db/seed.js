@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Order, Products, Holiday, Promise} = db
+    , {User, Order, Products, Holiday, Reviews, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -9,7 +9,8 @@ function seedEverything() {
     users: users(),
     orders: orders(),
     holiday: holidays(),
-    products: products()
+    products: products(),
+    reviews: reviews()
   }
 
   return Promise.props(seeded)
@@ -78,6 +79,76 @@ const products = seed(Products, {
   pool: {name: 'Above Ground Swimming Pool with Deluxe Accessory Set', price: 400, type: 'Outdoor Entertaining', imageURL: 'https://i5.walmartimages.com/asr/02a903f3-c821-4d35-af66-8bf732734c36_1.1994d7b95e4f16d6bc37da05f910bb7a.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF', description: 'Take the edge off the heat with the Summer Waves Above Ground Swimming Pool. It is quick and easy to set up. The Summer Waves above ground pool boasts an exceptionally durable construction that delivers years of reliable use, season after season. It measures in at 18\' x 48", so it is large enough for everyone to enjoy some quality family time while staying cool. This pool set includes a 1000-gallon cartridge filter pump with GFCI, cover, SureStep ladder, maintenance kit and ground cloth - everything you need for a smooth setup. Fill it with water and invite your friends for some refreshing fun in the sun.'},
 
   birdfeeder: {name: 'Birdfeeder', price: 400, type: 'Outdoor Entertaining', imageURL: 'http://ii.christmastreeshops.com/fcgi-bin/iipsrv.fcgi?FIF=/images/christmastreeshops/source/CTS/6107103_XXX_v1.tif&wid=2000&cvt=jpeg&_Colored%20House%20Shingle%20Roof%20Birdfeeder', description: 'This charming garden accent is for the birds. A shingled roof and colored accents bring character to our stylish birdhouse feeder.'},
+})
+
+const reviews = seed(Reviews, {
+  review1: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 1},
+
+  review2: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 1},
+
+  review3: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 1},
+
+  review4: {subject: 'Nice stocking but...', rating: '2', description: 'I do not have a problem with the seller, just the item. The item looked like the photo except for the material. I thought it would be fuzzy like most stockings. But it was made from was made from a silky material that did not look sturdy enough to stand the tests of time.', product_id: 2},
+
+  review5: {subject: '5 stars', rating: '5', description: 'Perfect for our new son in law! Arrived very quickly and as described.', product_id: 2},
+
+  review6: {subject: 'Pleasant purchasing experience', rating: '5', description: 'The wreath looks big enough, what\'s the most important is that it makes my front door so beautiful. I am so glad that I ordered it from AmyHomie.', product_id: 3},
+
+  review7: {subject: 'Can I give it more than 5 stars?', rating: '5', description: 'High quality. Made of much enough flowers. Recommendable', product_id: 3},
+
+  review8: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 4},
+
+  review9: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 4},
+
+  review10: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 4},
+
+  review11: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 5},
+
+  review12: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 5},
+
+  review13: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 5},
+
+  review14: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 6},
+
+  review15: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 6},
+
+  review16: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 6},
+
+  review17: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 7},
+
+  review18: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 7},
+
+  review19: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 7},
+
+  review20: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 8},
+
+  review21: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 8},
+
+  review22: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 8},
+
+  review23: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 9},
+
+  review24: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 9},
+
+  review25: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 9},
+
+  review26: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 10},
+
+  review27: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 10},
+
+  review28: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 10},
+
+  review29: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 11},
+
+  review30: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 11},
+
+  review31: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 11},
+
+  review32: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 12},
+
+  review33: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 12},
+
+  review34: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 12},
 })
 
 const holidays = seed(Holiday, {
@@ -173,4 +244,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, orders, holidays, products})
+module.exports = Object.assign(seed, {users, orders, holidays, products, reviews})

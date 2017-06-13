@@ -17,6 +17,7 @@ const app = require('APP')
       User: require('./user'),
       Products: require('./products'),
       Holiday: require('./holidays'),
+      Reviews: require('./reviews'),
       Cart: require('./cart'),
       InCart: require('./inCart'),
       // ---------- Add new models here ----------
