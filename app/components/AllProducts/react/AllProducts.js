@@ -11,7 +11,7 @@ const AllProducts = props => (
       props.products && props.products
         .map(product => (
           <div className="col-xs-4" key={ product.id }>
-              <img src="http://lorempixel.com/250/250/nature" />
+              <img className="productImage" src={ product.imageURL } />
               <div className="caption">
                 <h5>
                   <Link to={`/products/${product.id}`}>{ product.name }</Link>
