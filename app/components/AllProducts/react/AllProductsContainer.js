@@ -21,7 +21,7 @@ const AllProducts = props => (
                   }
                   }>
                     <button>
-                      <Link to={`/cart/products`}>Add to Cart</Link>
+                      Add to Cart
                     </button>
                   </form>
                 </h5>
