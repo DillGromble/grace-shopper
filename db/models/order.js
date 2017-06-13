@@ -9,7 +9,8 @@ module.exports = db => db.define('orders', {
   },
   status: {
     type: ENUM,
-    values: ['Created', 'Processing', 'Cancelled', 'Completed']
+    values: ['Created', 'Processing', 'Cancelled', 'Completed'],
+    defaultValue: 'Created',
   },
   items: {
     type: ARRAY(JSON), // current assumption is element: {product: '', price:NUM, quantity: NUM}
@@ -17,7 +18,7 @@ module.exports = db => db.define('orders', {
   },
 })
 
-module.exports.association = (Order, {User}) => {
+module.exports.associations = (Order, {User}) => {
   Order.belongsTo(User)
-  // pull items from cart
+  User.hasMany(Order)
 }
