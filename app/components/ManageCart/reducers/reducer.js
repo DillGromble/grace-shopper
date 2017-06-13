@@ -28,7 +28,13 @@ const reducer = (state = initialState, action) => {
     return newState
 
   case ADD_ITEM:
-    newState.items = [...newState.items, action.item]
+    const oldItems = newState.items.filter( item => item.id !== action.item.id)
+    if (oldItems.length === newState.items.length) {
+      newState.items = [...oldItems, action.item]
+    } else {
+      newState.items = newState.items.map( item =>
+      item.id === action.item.id ? action.item : item)
+    }
     return newState
 
   case REMOVE_ITEM:
