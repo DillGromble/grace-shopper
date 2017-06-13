@@ -28,7 +28,7 @@ describe('/api/cart:', () => {
     .then( u => user = u)
     .then( () => Cart.create({ user_id: user.id }))
     .then( c => cart = c)
-    .then( () => Products.create({name: 'Christmas Tree', price: 100, type: 'Home'}))
+    .then( () => Products.create({name: 'Christmas Tree', price: 100, type: 'Home', imageURL: 'www.picture.com'}))
     .then( p => product = p)
   )
 
