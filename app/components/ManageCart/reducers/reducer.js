@@ -15,7 +15,12 @@ const removeItem = item => ({type: REMOVE_ITEM, item})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
+<<<<<<< HEAD
   items: []
+=======
+  currentCart: {},
+  cartItems: [],
+>>>>>>> deleteItemButton
 }
 
 /* -------------------------------REDUCER------------------------------------ */
@@ -32,12 +37,16 @@ const reducer = (state = initialState, action) => {
     return newState
 
   case REMOVE_ITEM:
+<<<<<<< HEAD
     newState.items = newState.items.map( item =>
       item.id === action.item.id ? action.item : item
     )
+=======
+    newState.currentCart.products = state.currentCart.products.filter(prod => prod !== action.item)
+>>>>>>> deleteItemButton
     return newState
-
   }
+
   return state
 }
 
@@ -55,9 +64,15 @@ export const addToCart = (item) => (dispatch) => {
   .catch(console.error.bind(console))
 }
 
-export const removeFromCart = (item, cartId) => (dispatch) => {
+export const removeFromCart = (item) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
+<<<<<<< HEAD
   .then( res => dispatch(removeItem(res.data)))
+=======
+  .then( res => {
+    if (res.data === 'OK') dispatch(retrieveItems())
+  })
+>>>>>>> deleteItemButton
   .catch(console.error.bind(console))
 }
 
