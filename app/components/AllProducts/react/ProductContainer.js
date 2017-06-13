@@ -19,13 +19,20 @@ const Product = props => (
       </form>
       <br />
       <p>Reviews:</p>
-      <div>List of reviews here</div>
+      <ul className="reviews">{props.reviews && props.reviews.map(review => (
+        <li key={review.id} className="review">
+          <p><strong>Subject:</strong> {review.subject}</p>
+          <p><strong>Rating:</strong> {review.rating}</p>
+          <p><strong>Description:</strong> {review.description}</p>
+        </li>
+      ))}</ul>
       <Link to='/products'>Continue Shopping</Link>
     </div>
 )
 
 const mapStateToProps = state => ({
-  currentProduct: state.products.product
+  currentProduct: state.products.product,
+  reviews: state.products.product.reviews
 })
 
 const mapDispatchToProps = dispatch => ({
