@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 
-const Navbar = ({user}) => (
+const Navbar = ({user, cart}) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -23,7 +23,9 @@ const Navbar = ({user}) => (
               <li><a href="#">Separated link</a></li>
             </ul>
           </li>
-          <li><Link to="/cart/products">Cart</Link></li>
+          <li><Link to="/cart/products">
+            Cart {cart.length > 0 ? `(${cart.reduce((a, b) => a + b.inCart.quantity, 0)})` : ''}
+          </Link></li>
         </ul>
 
         <ul className="nav navbar-nav navbar-right">
@@ -38,5 +40,5 @@ const Navbar = ({user}) => (
 import {connect} from 'react-redux'
 
 export default connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth, cart }) => ({ user: auth, cart: cart.items })
 )(Navbar)
