@@ -10,7 +10,7 @@ const Product = props => (
       <div id="customerReviews">X Reviews</div>
       <p>Quantity: {props.currentProduct.quantity}</p>
       <p>Price: ${props.currentProduct.price}</p>
-      <p>Description:{props.currentProduct.description}</p>
+      <p>Description: {props.currentProduct.description}</p>
       <form onSubmit={(e) => {
         e.preventDefault()
         props.dispatchToCart(props.currentProduct)
