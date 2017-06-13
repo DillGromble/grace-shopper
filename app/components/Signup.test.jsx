@@ -57,8 +57,8 @@ describe('<Signup />', () => {
       )
     })
 
-    // it('calls preventDefault', () => {
-    //   expect(submitEvent.preventDefault).to.have.been.called
-    // })
+    it('calls preventDefault', () => {
+      expect(submitEvent.preventDefault).to.have.been.called
+    })
   })
 })
