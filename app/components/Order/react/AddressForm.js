@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const AddressForm = props => (
   <div>
@@ -9,6 +10,7 @@ const AddressForm = props => (
       <input name ="state" placeholder="State" />
       <input name ="zip code" placeholder="Zip Code" />
       <input name ="email" placeholder="Please confirm email" />
+      <Link><h2>Confirm Order</h2></Link>
     </form>
   </div>
 )

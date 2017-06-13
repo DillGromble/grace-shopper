@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router'
+import AddressForm from './AddressForm'
 
-export default class ManageCart extends Component {
+export default class Order extends Component {
   constructor(props) {
     super(props)
-    this.deleteClickedItem = this.deleteClickedItem.bind(this)
+    // this.deleteClickedItem = this.deleteClickedItem.bind(this)
   }
 
-  deleteClickedItem(item) {
-    this.props.removeItem(item)
-  }
+  // deleteClickedItem(item) {
+  //   this.props.removeItem(item)
+  // }
 
   render() {
     const items = this.props.items
@@ -17,7 +18,7 @@ export default class ManageCart extends Component {
 
     return (
       <div>
-        <h3>Hi!  Below is a summary of your order:</h3>
+        <h3>Please confirm order details!</h3>
         <div>
           <div className="col-xs-4"><h3>Item</h3></div>
           <div className="col-xs-4"><h3>Price</h3></div>
@@ -28,10 +29,6 @@ export default class ManageCart extends Component {
                 <div className="col-xs-4">{item.name}</div>
                 <div className="col-xs-4">${item.price}</div>
                 <div className="col-xs-4">{item.quantity}</div>
-                <button
-                  className="btn btn-default btn-xs"
-                  onClick={this.deleteClickedItem.bind(this, item)}
-                >Remove {item.name} from Cart</button>
             </div>
           ))}
         <div>
@@ -41,7 +38,7 @@ export default class ManageCart extends Component {
           }, 0)}
           </h3>
         </div>
-        <Link to="/order"><h2>Proceed To Checkout...</h2></Link>
+        <AddressForm />
       </div>
     )
   }

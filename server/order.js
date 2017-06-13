@@ -7,7 +7,7 @@ const Order = db.model('orders')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
-  // GET api/checkout
+  // GET api/order
   .get('/',
     (req, res, next) =>
       Order.findAll({})
