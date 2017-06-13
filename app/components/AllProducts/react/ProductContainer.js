@@ -18,6 +18,8 @@ const Product = props => (
         <button>Add to Cart</button>
       </form>
       <br />
+      <p>Reviews:</p>
+      <div>List of reviews here</div>
       <Link to='/products'>Continue Shopping</Link>
     </div>
 )
