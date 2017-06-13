@@ -112,14 +112,18 @@ auth.post('/signup/local', (req, res, next) =>
   User.findOne({
     where: {
       email: req.body.email
-    }
+    },
+    attributes: {include: ['password_digest']}
   })
   .then(user => {
-    if (!user) User.create(req.body)
-    return user
+    if (!user) return User.create(req.body)
+    else return user.authenticate(req.body.password)
   })
-  .then(user => {
-    res.status(201).json(user)
+  .then((user) => {
+    if (!user) {
+      debug('authenticate user(email: "%s") did fail: bad password')
+      next({message: 'Login incorrect'})
+    } else res.status(201).json(user)
   })
   .catch(next)
 )
