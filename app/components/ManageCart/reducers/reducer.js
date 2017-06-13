@@ -22,7 +22,7 @@ const updateItem = item => ({type: UPDATE_ITEM_QUANTITY, item})
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
   currentCart: {},
-  cartItems: []
+  cartItems: [],
 }
 
 /* -------------------------------REDUCER------------------------------------ */
@@ -43,11 +43,10 @@ const reducer = (state = initialState, action) => {
     return newState
 
   case REMOVE_ITEM:
-    const index = newState.cartItems.findIndex(action.item)
-    newState.cartItems.slice(index, 1)
+    newState.currentCart.products = state.currentCart.products.filter(prod => prod !== action.item)
     return newState
-
   }
+
   return state
 }
 
@@ -74,7 +73,7 @@ export const addToCart = (item) => (dispatch) => {
   .catch(console.error.bind(console))
 }
 
-export const removeFromCart = (item, cartId) => (dispatch) => {
+export const removeFromCart = (item) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
   .then( res => {
     if (res.data === 'OK') dispatch(removeItem(item))
