@@ -40,13 +40,12 @@ export const fetchAllProducts = () => dispatch => {
   .catch(err => console.error(err))
 }
 
-export const fetchProduct = productId => {
-  return dispatch => {
+export const fetchProduct = productId =>
+  dispatch => {
     axios.get(`/api/products/${productId}`)
     .then(res => res.data)
     .then(product => dispatch(loadProduct(product)))
     .catch(err => console.error(err))
   }
-}
 
 export default reducer

@@ -2,14 +2,14 @@ import React from 'react'
 import AddressForm from './AddressForm'
 import {connect} from 'react-redux'
 
-const Checkout = props => (
+const Checkout = ({ items }) => (
   <div>
     <div>
       <h1>Here's the checkout page, buy stuff now!</h1>
         <AddressForm />
     </div>
     <div>
-      <h1>Total Price: ${Array.isArray(props.cartItems) && props.cartItems.reduce((total, item) => {
+      <h1>Total Price: ${Array.isArray(items) && items.reduce((total, item) => {
         total += item.price * item.quantity
         return total
       }, 0)}
@@ -19,8 +19,7 @@ const Checkout = props => (
 )
 
 const mapStateToProps = state => ({
-  products: state.products.products,
-  cartItems: state.cartItems.cartItems
+  items: state.cart.items
 })
 
 const mapDispatchToProps = dispatch => ({

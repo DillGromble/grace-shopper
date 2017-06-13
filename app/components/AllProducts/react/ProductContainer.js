@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 
-const Product = props => {
-  return (
+const Product = props => (
     <div>
       <h1>Product Page: {props.currentProduct.name}</h1>
       <img src={props.currentProduct.imageURL} />
@@ -18,8 +17,7 @@ const Product = props => {
       <br />
       <Link to='/products'>Continue Shopping</Link>
     </div>
-  )
-}
+)
 
 const mapStateToProps = state => ({
   currentProduct: state.products.product
