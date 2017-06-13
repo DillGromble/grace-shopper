@@ -5,12 +5,14 @@ import axios from 'axios'
 const LOAD_ALL = 'LOAD_ALL_PRODUCTS'
 const LOAD_PRODUCT = 'LOAD_PRODUCT'
 const LOAD_REVIEWS = 'LOAD_REVIEWS'
+const ADD_REVIEW = 'ADD_REVIEW'
 
 /* ---------------------------ACTION CREATORS-------------------------------- */
 
 const loadAllProducts = products => ({ type: LOAD_ALL, products })
 const loadProduct = product => ({ type: LOAD_PRODUCT, product })
 const loadReviews = reviews => ({ type: LOAD_REVIEWS, reviews })
+const addReview = review => ({ type: ADD_REVIEW, review })
 
 /* -------------------------------REDUCER------------------------------------ */
 const initialState = {
@@ -30,6 +32,9 @@ const reducer = (state = initialState, action) => {
     break
   case LOAD_REVIEWS:
     newState.product.reviews = action.reviews
+    break
+  case ADD_REVIEW:
+    newState.product.reviews = [...newState.product.reviews, action.review]
     break
   default:
     return state
@@ -60,4 +65,13 @@ export const fetchReviews = productId =>
     .then( reviews => dispatch(loadReviews(reviews)))
     .catch(err => console.error(err))
   }
+
+export const insertReview = (review) =>
+  dispatch => {
+    axios.post(`/api/products/${review.productId}/reviews`, review)
+    .then(res => res.data)
+    .then( review => dispatch(addReview(review)))
+    .catch(err => console.error(err))
+  }
+
 export default reducer
