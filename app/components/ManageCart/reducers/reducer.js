@@ -76,7 +76,7 @@ export const addToCart = (item) => (dispatch) => {
 export const removeFromCart = (item) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
   .then( res => {
-    if (res.data === 'OK') dispatch(removeItem(item))
+    if (res.data === 'OK') dispatch(retrieveItems())
   })
   .catch(console.error.bind(console))
 }
