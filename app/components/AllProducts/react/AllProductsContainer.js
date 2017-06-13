@@ -2,36 +2,53 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
+import AllProducts from './AllProducts'
 
-const AllProducts = props => (
-  <div>
-    <h1>You've landed at the all products page!</h1>
-    <div className="row">
-    {
-      props.products && props.products
-        .map(product => (
-          <div className="col-xs-4" key={ product.id }>
-              <img src="http://lorempixel.com/250/250/nature" />
-              <div className="caption">
-                <h5>
-                  <Link to={`/products/${product.id}`}>{ product.name }</Link>
-                  <form onSubmit={ (e) => {
-                    e.preventDefault()
-                    props.dispatchToCart(product)
-                  }
-                  }>
-                    <button>
-                      Add to Cart
-                    </button>
-                  </form>
-                </h5>
-              </div>
-          </div>
-        ))
+class AllProductsContainer extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      inputValue: ''
     }
-    </div>
-  </div>
-)
+
+    this.onCartAdd = this.onCartAdd.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    })
+  }
+
+  onCartAdd(evt, item) {
+    evt.preventDefault()
+    this.props.dispatchToCart(item)
+  }
+
+  render() {
+    const searchVal = this.state.inputValue
+    const filteredItems = this.props.products.filter( item => item.name.match(searchVal))
+
+    return (
+      <div>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            onChange={ this.handleChange }
+          />
+        </div>
+        <AllProducts
+          products={ filteredItems }
+          onSubmit={ this.onCartAdd }
+        />
+      </div>
+    )
+  }
+}
+
 const mapState = state => ({
   products: state.products.products
 })
@@ -42,4 +59,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(AllProducts)
+export default connect(mapState, mapDispatch)(AllProductsContainer)
