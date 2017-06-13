@@ -1,6 +1,6 @@
 'use strict'
 
-const {STRING, FLOAT, INTEGER, ENUM} = require('sequelize')
+const {STRING, FLOAT, INTEGER, ENUM, TEXT} = require('sequelize')
 
 module.exports = db => db.define('products', {
   name: {
@@ -21,6 +21,13 @@ module.exports = db => db.define('products', {
     validate: { min: 0 },
     allowNull: false,
     defaultValue: 1
+  },
+  description: {
+    type: TEXT
+  },
+  imageURL: {
+    type: TEXT,
+    allowNull: false
   },
   type: {
     type: ENUM('Decorations', 'Clothing', 'Home', 'Outdoor Entertaining', 'Gifts', 'Misc'),
