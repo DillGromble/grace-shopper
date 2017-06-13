@@ -1,20 +1,23 @@
-import React from 'react'
 import {connect} from 'react-redux'
 import ManageCart from './ManageCart'
+import { removeFromCart } from '../reducers/reducer'
 
 const mapStateToProps = state => ({
-  userName: state.cart.currentCart.user && state.cart.currentCart.user.name,
-  itemsInCart: state.cart.currentCart.products && state.cart.currentCart.products.map(p => (
-    {
-      id: p.id,
-      name: p.name,
-      price: p.price,
-      quantity: p.inCart.quantity,
-    })
-  )
+  items: state.cart.items && state.cart.items.map(p => ({
+    id: p.id,
+    name: p.name,
+    price: p.price,
+    quantity: p.inCart.quantity,
+  }))
 })
 
-const mapDispatchToProps = dispatch => ({
-})
+function mapDispatchToProps(dispatch) {
+  return {
+    removeItem: function(item) {
+      const action = removeFromCart(item)
+      dispatch(action)
+    }
+  }
+}
 
-export default connect(mapStateToProps)(ManageCart)
+export default connect(mapStateToProps, mapDispatchToProps)(ManageCart)

@@ -3,10 +3,10 @@
 const db = require('APP/db')
 const Cart = db.model('cart')
 const InCart = db.model('inCart')
-
+const Product = db.model('products')
 module.exports = require('express').Router()
 
-  .use('/products', (req, res, next) => {
+  .use('/products', (req, res, next) =>
     Cart.findById(req.session.cart)
     .then(cart => {
       req.cart = cart
@@ -15,11 +15,12 @@ module.exports = require('express').Router()
       return null
     })
     .catch(next)
-  })
+  )
 
-  .get('/products', (req, res, next) => {
-    res.status(200).json(req.cart)
-  })
+  .get('/products', (req, res, next) =>
+    req.cart.getProducts()
+    .then(items => res.status(200).json(items))
+  )
 
   .put('/products/add', (req, res, next) =>
     InCart.findOrCreate({
@@ -28,18 +29,25 @@ module.exports = require('express').Router()
     })
     .spread( (row, wasMade) => {
       if (!wasMade) return row.update({ quantity: row.quantity + 1 })
+      else return row
     })
-    .then( () => res.sendStatus(200))
+    .then( (newRow) => {
+      req.body.inCart = newRow.dataValues
+      res.json(req.body)
+    })
     .catch(next)
   )
 
   .put('/products/sub', (req, res, next) =>
     InCart.findOne({ where: { cart_id: req.cart.id, product_id: req.body.id } })
     .then( row => {
-      if (row.quantity === 1) row.destroy()
+      if (row.quantity === 1) return row.destroy()
       else return row.update({ quantity: row.quantity - 1 })
     })
-    .then( () => res.sendStatus(200))
+    .then( (rowUpdate) => {
+      req.body.inCart = rowUpdate.dataValues
+      res.json(rowUpdate)
+    })
     .catch(next)
   )
 
@@ -62,7 +70,7 @@ module.exports = require('express').Router()
         .then( () => req.session.cart = cart.id)
       }
     })
-    .then( () => res.sendStatus(200))
+    .then( (newCart) => res.json(newCart))
     .catch(next)
   })
 
