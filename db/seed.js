@@ -49,16 +49,35 @@ const users = seed(User, {
 })
 
 const products = seed(Products, {
-  christmasTree: {name: 'Christmas Tree', price: 100, type: 'Home'},
-  stockings: {name: 'Holiday Stocking', price: 10, type: 'Home'},
-  wreath: {name: 'Wreath', price: 20, type: 'Home'},
-  wrappingPaper: {name: 'Wrapping Paper', price: 10, type: 'Home'},
-  uglySweater: {name: 'Ugly Sweater', price: 50, type: 'Clothing'},
-  bananaCostume: {name: 'Banana Costume', price: 50, type: 'Clothing'},
-  astronautCostume: {name: 'Astronaut Costume', price: 50, type: 'Clothing'},
-  Grill: {name: 'Char-Broil Gas Grill', price: 100, type: 'Outdoor Entertaining'},
-  iceCreamMaker: {name: 'Ice Cream Maker', price: 50, type: 'Outdoor Entertaining'},
-  inflatableTurtle: {name: 'Inflatable Turtle', price: 10, type: 'Outdoor Entertaining'},
+  christmasTree: {name: 'Christmas Tree', price: 100, type: 'Home', imageURL: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSBN7YSFm4FxQntrKU1ZL9KG7eVFJGTA-eLsjR3S7Os1GkuYP0vBj_6hzLXkw&usqp=CAY', description: 'Christmas Trees - The National Tree 7-Foot North Valley Spruce Hinged Tree Christmas Tree with Clear Lights has hinged branches to make it easy to set up and shape just right. Already pre-strung with 500 clear lights, it\'s just waiting for you to add your touch.'},
+
+  stockings: {name: 'Holiday Stocking', price: 10, type: 'Home', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR7MPkldgQdfjQgdQM5m0zX_WVthz-ZI-u9sakVYY1gi2a2FYV5jWXARadcn40&usqp=CAE', description: 'Need an extra hand this holiday season? The delightful character on our Holiday Helper Stocking is ready to make your home look a little extra festive this year.'},
+
+  springWreath: {name: 'Faux Spring Berry 20" Wreath', price: 20, type: 'Home', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQDRWvxci9CMZrnFpZffO_VbEeYhmIFWhunQNTRGdOMr4yHV5Ay4GEChGjI9Fk&usqp=CAE', description: 'Realistic berries in purple and blue mingle with lush - faux greenery for a handcrafted wreath you\'ll love over the mantel or displayed on your covered front door.'},
+
+  christmasWreath: {name: 'Winter Holiday Wreath', price: 20, type: 'Home', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTwF2vFup9Cd6b2HLhYkDVybTSLRLpb-pxa3XGCzvYlGnRrHPuXW4tYCJUegEcRLJaaUmXHTprT&usqp=CAE', description: 'Holiday Bright Lights WR24-MXORN-BOWW30 Holiday Wonderland; 24; Artificial Mixed Pine Wreath; Place Anywhere; Adorned With 30 Battery Operated Warm White Lights; Contains Red & Green Old Fashioned Mercury Ornaments That Are Also Lit; Batteries Run On Timer & Last Up To 576 Hours - 6 Hours On; 18 Hours Off & Repeat; Uses 2 D Batteries; Not Included.'},
+
+  wrappingPaper: {name: 'Wrapping Paper', price: 10, type: 'Home', imageURL: 'https://target.scene7.com/is/image/Target/51980755?wid=520&hei=520&fmt=pjpeg', description: 'Bring the magic of Christmas under the tree with this fun Christmas wrapping paper! This value pack features three different rolls of wrapping paper; one design with flying reindeer, another with colorful snowflakes, and the third with Santa, penguins, and snowmen ice skating. Each roll is 2.5 ft. x 13.6 ft. and has 34 square feet of wrapping paper for a total of 102 square feet - plenty of wrapping paper to wrap gifts for the kids! Pair with a bright red bow or a winter character attachment for a gift presentation that looks like it came from the North Pole!'},
+
+  uglySweater1: {name: 'Birthday Boy Ugly Sweater', price: 50, type: 'Clothing', imageURL: 'http://diyforlife.com/wp-content/uploads/2014/12/ugly-christmas-sweater-5.jpg', description: 'Ugly Christmas sweaters are making a come back.  You should only wear them to Ugly Christmas Sweater Parties though.  Any other time, they are perfectly dreadful.  This collection of holiday attire is sure to tickle your funny bone and may cause a sudden urge to plan your own Ugly Christmas Sweater Party.'},
+
+  uglySweater2: {name: 'Youth – Star Wars Darth Vader Face Black Sweater', price: 25, type: 'Clothing', imageURL: 'http://www.uglychristmassweater.com/wp-content/uploads/2015/11/SWC-0717-HOLIDAY-VADER-552x611.jpg', description: 'Kids can have fun with the ugly sweater craze too! If you have a youngster who loves Star Wars then they’ll for sure love our ugly Star Wars Darth Vader holiday sweater.'},
+
+  bananaCostume: {name: 'Banana Costume', price: 50, type: 'Clothing', imageURL: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS3W2TmMMZbgr6QxhVQA-m1zzes41O0j91-PqRDxkDVqZh7oewAme7ESutNGLei_P0KCIXFmS40&usqp=CAE', description: 'Is your banana costume game slipping a bit lately? (okay, maybe we\'re exaggerating a tad, but not by much) The same goes for many banana costumes. They start out perfectly yellow and shapely, but as the party goes on, it gradually loses its pep. By the end of the night, you might as well be wearing a soggy yellow bean bag chair cover. This wacky number solves that pep problem with the battery powered fan built right into it! It\'s (for lack of a better term) bananas!'},
+
+  astronautCostume: {name: 'Astronaut Costume', price: 50, type: 'Clothing', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSZqqRWNPxui6yKU5OjKJ2MY1b5GvARXDGuOeHMBGuC-tjh0Bd9phmumtlAEC2yTwfLfbS5aKA&usqp=CAE', description: 'Get ready for blast off in this out-of-this-world costume. This astronaut costume features a space helmet, spacesuit, and silver belt that\'s perfect for your first space walk. Explore the galaxy and you\'ll never want to come back down to Earth once you put on this spectacular costume.. Male . Available in size: Standard. astronauts, space, nasa, white, suits, galaxy'},
+
+  Grill: {name: 'Char-Broil Gas Grill', price: 100, type: 'Outdoor Entertaining', imageURL: 'http://ace.imageg.net/graphics/product_images/pACE3-13653049enh-z7.jpg', description: '300 True Stainless Steel construction adds a higher level of sophistication to this three-burner grill. Whether you choose a built-in or freestanding model, you\'ll enjoy a perfect balance of style and functionality.'},
+
+  iceCreamMaker: {name: 'Ice Cream Maker', price: 50, type: 'Outdoor Entertaining', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRtoHhjB4mHTsgeAQ4716sPBEF-I2aQSGJVSIAiUiOCNS5pFMs&usqp=CAE', description: 'What\'s better than a quart of luscious homemade ice cream, sorbet or frozen yogurt? Two quarts! The fully automatic Cuisinart Pure Indulgence makes 2 quarts of your favorite frozen desserts or drinks in as little as 25 minutes. It\'s easy -- an integrated motor, double-insulated freezer bowl and automatic mixing paddle do all the work. Results are consistently smooth, cleanup is easy, and the brushed metal styling is simply sensational.'},
+
+  inflatableTurtle: {name: 'Inflatable Turtle', price: 10, type: 'Outdoor Entertaining', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ6NcvIxwMrdUiA2_ZsseyjzSuYFET66urw7-_zwNrdqw4RTmnbiXqfV0aV3OjZ7cG0W7zY9Dt-&usqp=CAE', description: 'Take it slow while you float on our inflatable turtle. Featuring heavy-duty side handles and safety valves, this cheerful sea creature is perfect for young swimmers.'},
+
+  inflatablePineapple: {name: 'Inflatable Pineapple', price: 10, type: 'Outdoor Entertaining', imageURL: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRVijLgM1AxhFbSxdvR-ztoZiN_BYH1UhLjyT1lbwe722qzNIsfw2ZqX46pJU1bnV1bIs0DLRKD&usqp=CAE', description: 'Pool floats are must-haves for your luau, and this fun and festive pineapple is a fabulous way to dress up the celebration! Guests will line up for a chance to laze about on this unique raft. Give your pool party some hot Hawaiian style - check out more tropical trends at the most affordable prices around, right here on this website'},
+
+  pool: {name: 'Above Ground Swimming Pool with Deluxe Accessory Set', price: 400, type: 'Outdoor Entertaining', imageURL: 'https://i5.walmartimages.com/asr/02a903f3-c821-4d35-af66-8bf732734c36_1.1994d7b95e4f16d6bc37da05f910bb7a.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF', description: 'Take the edge off the heat with the Summer Waves Above Ground Swimming Pool. It is quick and easy to set up. The Summer Waves above ground pool boasts an exceptionally durable construction that delivers years of reliable use, season after season. It measures in at 18\' x 48", so it is large enough for everyone to enjoy some quality family time while staying cool. This pool set includes a 1000-gallon cartridge filter pump with GFCI, cover, SureStep ladder, maintenance kit and ground cloth - everything you need for a smooth setup. Fill it with water and invite your friends for some refreshing fun in the sun.'},
+
+  birdfeeder: {name: 'Birdfeeder', price: 400, type: 'Outdoor Entertaining', imageURL: 'http://ii.christmastreeshops.com/fcgi-bin/iipsrv.fcgi?FIF=/images/christmastreeshops/source/CTS/6107103_XXX_v1.tif&wid=2000&cvt=jpeg&_Colored%20House%20Shingle%20Roof%20Birdfeeder', description: 'This charming garden accent is for the birds. A shingled roof and colored accents bring character to our stylish birdhouse feeder.'},
 })
 
 const holidays = seed(Holiday, {

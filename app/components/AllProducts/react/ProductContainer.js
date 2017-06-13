@@ -6,10 +6,11 @@ import { addToCart } from '../../ManageCart/reducers/reducer'
 const Product = props => (
     <div>
       <h1>Product Page: {props.currentProduct.name}</h1>
-      <img src="http://lorempixel.com/250/250/nature" />
+      <img src={props.currentProduct.imageURL} />
       <div id="customerReviews">X Reviews</div>
       <p>Quantity: {props.currentProduct.quantity}</p>
       <p>Price: ${props.currentProduct.price}</p>
+      <p>Description:{props.currentProduct.description}</p>
       <button>
         <Link to={`/cart/products`}>Add to Cart</Link>
       </button>
