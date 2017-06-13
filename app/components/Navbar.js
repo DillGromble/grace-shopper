@@ -23,7 +23,7 @@ const Navbar = ({user}) => (
               <li><a href="#">Separated link</a></li>
             </ul>
           </li>
-          <li><Link to="/users/:id/cart/products">Cart</Link></li>
+          <li><Link to="/cart/products">Cart</Link></li>
         </ul>
 
         <ul className="nav navbar-nav navbar-right">

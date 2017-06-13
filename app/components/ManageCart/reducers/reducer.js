@@ -22,29 +22,33 @@ const updateItem = item => ({type: UPDATE_ITEM_QUANTITY, item})
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
   currentCart: {},
+  cartItems: []
 }
 
 /* -------------------------------REDUCER------------------------------------ */
 const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
   switch (action.type) {
+
   case SET_CART:
     newState.id = action.id
-    break
+    return newState
+
   case GET_CART:
     newState.currentCart = action.currentCart
-    break
+    return newState
+
   case ADD_ITEM:
     newState.cartItems = [...newState.cartItems, action.item]
-    break
+    return newState
+
   case REMOVE_ITEM:
     const index = newState.cartItems.findIndex(action.item)
     newState.cartItems.slice(index, 1)
-    break
-  default:
-    return state
+    return newState
+
   }
-  return newState
+  return state
 }
 
 // Thunk action creator
@@ -54,24 +58,38 @@ export const setCartId = (cartId) => (dispatch) => {
   .then(cart => dispatch(setCart(cart.id)))
   .catch(console.error.bind(console))
 }
-export const retrieveItems = (cartId) => (dispatch) => {
-  axios.get(`/api/cart/${cartId}/products`, cartId)
+export const retrieveItems = () => (dispatch) => {
+  axios.get(`/api/cart/products`)
   .then(res => res.data)
   .then(cart => dispatch(getCart(cart)))
   .catch(console.error.bind(console))
 }
 
-export const addToCart = (item, cartId) => (dispatch) => {
-  axios.put(`/api/cart/${cartId}/products`, item)
-  .then(res => dispatch(addItem(item)))
+export const addToCart = (item) => (dispatch) => {
+  axios.put(`/api/cart/products/add`, item)
+  .then(res => {
+    // does this check need to happen if errors are thrown farther down the promise chain?
+    if (res.data === 'OK') dispatch(addItem(item))
+  })
   .catch(console.error.bind(console))
 }
 
 export const removeFromCart = (item, cartId) => (dispatch) => {
-  item.amount = -1
-  axios.put(`/api/cart/${cartId}/products`, item)
-  .then(res => dispatch(removeItem(item)))
+  axios.put(`/api/cart/products/sub`, item)
+  .then( res => {
+    if (res.data === 'OK') dispatch(removeItem(item))
+  })
   .catch(console.error.bind(console))
 }
+
+export const mergeSessionCartToUser = () =>
+  dispatch =>
+    axios.get('/api/auth/whoami')
+    .then( user => {
+      const userId = user.data.id
+      return axios.put(`/api/cart/mergeCart/${userId}`)
+      .then( () => dispatch(setCart(userId)))
+    })
+    .catch(console.error.bind(console))
 
 export default reducer
