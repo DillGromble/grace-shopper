@@ -6,12 +6,9 @@ import { createOrder } from '../reducers/order'
 /* --- --- --- --- Dumb Component --- --- --- --- */
 
 class AddressForm extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
-    console.log('props in AddressForm: ', this.props)
+    const items = this.props.items
+    const createOrderDispatcher = this.props.createOrderDispatcher
 
     return (
       <div>
@@ -20,10 +17,10 @@ class AddressForm extends Component {
           label="shippingAddress"
           onSubmit={evt => {
             evt.preventDefault()
+            console.log('CLICKED')
             const address = `${evt.target.address.value}, ${evt.target.city.value}, ${evt.target.state.value}, ${evt.target.zip.value}`
             const email = evt.target.email.value
-            console.log('ADDRESS IN ADDRESS FORM:', address)
-            console.log('EMAIL IN ADDRESS FORM:', email)
+            createOrderDispatcher(address, email, items)
           } }>
           <input name ="address" placeholder="Street Address" />
           <input name ="city" placeholder="City" />

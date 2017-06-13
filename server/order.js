@@ -15,7 +15,24 @@ module.exports = require('express').Router()
       .catch(next)
   )
 
+  // POST api/order
   .post('/',
     (req, res, next) =>
-      console.log(req)
+      User.findOne({
+        where: {
+          email: req.body.email,
+        }
+      })
+      .then(user => {
+        if (user) {
+          return Order.create({
+            address: req.body.address,
+            items: req.body.items,
+            user_id: user.id,
+          })
+        } else {
+          res.send('Please log in before proceeding to checkout!')
+        }
+      })
+      .catch(next)
   )
