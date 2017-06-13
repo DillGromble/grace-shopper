@@ -14,3 +14,8 @@ module.exports = require('express').Router()
       .then(orders => res.send(orders))
       .catch(next)
   )
+
+  .post('/',
+    (req, res, next) =>
+      console.log(req)
+  )

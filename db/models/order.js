@@ -18,7 +18,7 @@ module.exports = db => db.define('orders', {
   },
 })
 
-module.exports.association = (Order, {User}) => {
+module.exports.associations = (Order, {User}) => {
   Order.belongsTo(User)
-  // pull items from cart
+  User.hasMany(Order)
 }
