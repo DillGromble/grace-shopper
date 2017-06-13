@@ -13,7 +13,7 @@ export default class ManageCart extends Component {
 
   render() {
     const items = this.props.items
-    let counter = 0;
+    let counter = 0
 
     return (
       <div>

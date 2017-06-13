@@ -3,18 +3,9 @@ import {Link} from 'react-router'
 import AddressForm from './AddressForm'
 
 export default class Order extends Component {
-  constructor(props) {
-    super(props)
-    // this.deleteClickedItem = this.deleteClickedItem.bind(this)
-  }
-
-  // deleteClickedItem(item) {
-  //   this.props.removeItem(item)
-  // }
-
   render() {
     const items = this.props.items
-    let counter = 0;
+    let counter = 0
 
     return (
       <div>
