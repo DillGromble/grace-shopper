@@ -13,7 +13,7 @@ import ManageCartContainer from './components/ManageCart/react/ManageCartContain
 import OrderContainer from './components/Order/react/OrderContainer'
 
 import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
-import { fetchAllProducts, fetchProduct } from './components/AllProducts/reducers/products'
+import { fetchAllProducts, fetchProduct, fetchReviews } from './components/AllProducts/reducers/products'
 
 const Routes = props => (
     <Router history={browserHistory}>
@@ -22,7 +22,7 @@ const Routes = props => (
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/products" component={AllProductsContainer} onEnter={props.loadProductsAndUserCart} />
-        <Route path="/products/:id" component={Product} onEnter={props.loadSingleProduct} />
+        <Route path="/products/:id" component={Product} onEnter={props.loadProductAndReviews} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/order" component={OrderContainer} onEnter={props.loadCheckout} />
       </Route>
@@ -39,8 +39,9 @@ const mapDispatch = dispatch => ({
   loadCartItems: () => {
     dispatch(retrieveItems())
   },
-  loadSingleProduct: (nextRouterState) => {
+  loadProductAndReviews: (nextRouterState) => {
     dispatch(fetchProduct(nextRouterState.params.id))
+    dispatch(fetchReviews(nextRouterState.params.id))
   },
   loadCheckout: () => {
     dispatch(retrieveItems())

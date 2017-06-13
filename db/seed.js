@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Order, Products, Holiday, Promise} = db
+    , {User, Order, Products, Holiday, Reviews, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -9,8 +9,10 @@ function seedEverything() {
     users: users(),
     orders: orders(),
     holiday: holidays(),
-    products: products()
+    products: products(),
   }
+
+  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
@@ -79,6 +81,76 @@ const products = seed(Products, {
 
   birdfeeder: {name: 'Birdfeeder', price: 400, type: 'Outdoor Entertaining', imageURL: 'http://ii.christmastreeshops.com/fcgi-bin/iipsrv.fcgi?FIF=/images/christmastreeshops/source/CTS/6107103_XXX_v1.tif&wid=2000&cvt=jpeg&_Colored%20House%20Shingle%20Roof%20Birdfeeder', description: 'This charming garden accent is for the birds. A shingled roof and colored accents bring character to our stylish birdhouse feeder.'},
 })
+
+const reviews = seed(Reviews, ({users}) => ({
+  review1: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 1, user_id: 1},
+
+  review2: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 1, user_id: 1},
+
+  review3: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 1, user_id: 1},
+
+  review4: {subject: 'Nice stocking but...', rating: '2', description: 'I do not have a problem with the seller, just the item. The item looked like the photo except for the material. I thought it would be fuzzy like most stockings. But it was made from was made from a silky material that did not look sturdy enough to stand the tests of time.', product_id: 2, user_id: 2},
+
+  review5: {subject: '5 stars', rating: '5', description: 'Perfect for our new son in law! Arrived very quickly and as described.', product_id: 2, user_id: 2},
+
+  review6: {subject: 'Pleasant purchasing experience', rating: '5', description: 'The wreath looks big enough, what\'s the most important is that it makes my front door so beautiful. I am so glad that I ordered it from AmyHomie.', product_id: 3, user_id: 2},
+
+  review7: {subject: 'Can I give it more than 5 stars?', rating: '5', description: 'High quality. Made of much enough flowers. Recommendable', product_id: 3, user_id: 2},
+
+  review8: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 4, user_id: 2},
+
+  review9: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 4, user_id: 3},
+
+  review10: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 4, user_id: 3},
+
+  review11: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 5, user_id: 3},
+
+  review12: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 5, user_id: 4},
+
+  review13: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 5, user_id: 4},
+
+  review14: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 6, user_id: 5},
+
+  review15: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 6, user_id: 5},
+
+  review16: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 6, user_id: 5},
+
+  review17: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 7, user_id: 6},
+
+  review18: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 7, user_id: 6},
+
+  review19: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 7, user_id: 6},
+
+  review20: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 8, user_id: 5},
+
+  review21: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 8, user_id: 5},
+
+  review22: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 8, user_id: 5},
+
+  review23: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 9, user_id: 4},
+
+  review24: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 9, user_id: 5},
+
+  review25: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 9, user_id: 5},
+
+  review26: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 10, user_id: 2},
+
+  review27: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 10, user_id: 2},
+
+  review28: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 10, user_id: 3},
+
+  review29: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 11, user_id: 3},
+
+  review30: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 11, user_id: 4},
+
+  review31: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 11, user_id: 4},
+
+  review32: {subject: 'I love this product', rating: '5', description: 'I can use this everyday!', product_id: 12, user_id: 2},
+
+  review33: {subject: 'I need 10 of these', rating: '5', description: 'Wow!! It\'s perfect', product_id: 12, user_id: 2},
+
+  review34: {subject: 'I\'m in love', rating: '5', description: 'This product is amazing.', product_id: 12, user_id: 5},
+}))
 
 const holidays = seed(Holiday, {
   christmas: { name: 'Christmas' },
@@ -173,4 +245,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, orders, holidays, products})
+module.exports = Object.assign(seed, {users, orders, holidays, products, reviews})
