@@ -8,7 +8,7 @@ import Login from './components/Login'
 
 import NotFound from './components/NotFound'
 import AllProductsContainer from './components/AllProducts/react/AllProductsContainer'
-import Product from './components/AllProducts/react/ProductContainer'
+import ProductContainer from './components/AllProducts/react/ProductContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
@@ -22,7 +22,7 @@ const Routes = props => (
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/products" component={AllProductsContainer} onEnter={props.loadProductsAndUserCart} />
-        <Route path="/products/:id" component={Product} onEnter={props.loadProductAndReviews} />
+        <Route path="/products/:id" component={ProductContainer} onEnter={props.loadProductAndReviews} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
