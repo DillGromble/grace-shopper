@@ -10,7 +10,7 @@ import NotFound from './components/NotFound'
 import AllProductsContainer from './components/AllProducts/react/AllProductsContainer'
 import Product from './components/AllProducts/react/ProductContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
-import Checkout from './components/CheckoutCart/react/Checkout'
+import OrderContainer from './components/Order/react/OrderContainer'
 
 import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
 import { fetchAllProducts, fetchProduct, fetchReviews } from './components/AllProducts/reducers/products'
@@ -24,7 +24,7 @@ const Routes = props => (
         <Route path="/products" component={AllProductsContainer} onEnter={props.loadProductsAndUserCart} />
         <Route path="/products/:id" component={Product} onEnter={props.loadProductAndReviews} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
-        <Route path="/checkout" component={Checkout} onEnter={props.loadCheckout} />
+        <Route path="/order" component={OrderContainer} onEnter={props.loadCheckout} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
