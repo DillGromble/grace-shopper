@@ -9,11 +9,12 @@ import Login from './components/Login'
 
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts/react/AllProductsContainer'
+import Product from './components/AllProducts/react/ProductContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import Checkout from './components/CheckoutCart/react/Checkout'
 
 import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
-import { fetchAllProducts } from './components/AllProducts/reducers/products'
+import { fetchAllProducts, fetchProduct } from './components/AllProducts/reducers/products'
 
 const Routes = props => (
     <Router history={browserHistory}>
@@ -23,6 +24,7 @@ const Routes = props => (
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/products" component={AllProducts} onEnter={props.loadProductsAndUserCart} />
+        <Route path="/products/:id" component={Product} onEnter={props.loadSingleProduct} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/checkout" component={Checkout} onEnter={props.loadCheckout} />
       </Route>
@@ -35,8 +37,12 @@ const mapDispatch = dispatch => ({
     dispatch(retrieveItems())
     dispatch(fetchAllProducts())
   },
+
   loadCartItems: () => {
     dispatch(retrieveItems())
+  },
+  loadSingleProduct: (nextRouterState) => {
+    dispatch(fetchProduct(nextRouterState.params.id))
   },
   loadCheckout: () => {
     dispatch(retrieveItems())
