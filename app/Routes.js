@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router'
 
 import Root from './components/Root'
-import Jokes from './components/Jokes'
 import Signup from './components/Signup'
 import Login from './components/Login'
 
@@ -19,8 +18,7 @@ import { fetchAllProducts, fetchProduct } from './components/AllProducts/reducer
 const Routes = props => (
     <Router history={browserHistory}>
       <Route path="/" component={Root}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+        <IndexRedirect to="/products" />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/products" component={AllProductsContainer} onEnter={props.loadProductsAndUserCart} />
