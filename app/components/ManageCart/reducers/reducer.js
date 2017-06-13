@@ -31,10 +31,10 @@ const reducer = (state = initialState, action) => {
     newState.items = [...newState.items, action.item]
     return newState
 
-// FIX REMOVE
   case REMOVE_ITEM:
-    const index = newState.cartItems.findIndex(action.item)
-    newState.cartItems.slice(index, 1)
+    newState.items = newState.items.map( item =>
+      item.id === action.item.id ? action.item : item
+    )
     return newState
 
   }
@@ -51,18 +51,13 @@ export const retrieveItems = () => (dispatch) => {
 
 export const addToCart = (item) => (dispatch) => {
   axios.put(`/api/cart/products/add`, item)
-  .then(res => {
-    if (res.data.product_id) dispatch(addItem(item))
-  })
+  .then(res => dispatch(addItem(res.data)))
   .catch(console.error.bind(console))
 }
 
 export const removeFromCart = (item, cartId) => (dispatch) => {
   axios.put(`/api/cart/products/sub`, item)
-  .then( res => {
-
-    if (res.data.product_id) dispatch(removeItem(item))
-  })
+  .then( res => dispatch(removeItem(res.data)))
   .catch(console.error.bind(console))
 }
 

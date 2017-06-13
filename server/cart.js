@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const Cart = db.model('cart')
 const InCart = db.model('inCart')
-
+const Product = db.model('products')
 module.exports = require('express').Router()
 
   .use('/products', (req, res, next) =>
@@ -31,7 +31,10 @@ module.exports = require('express').Router()
       if (!wasMade) return row.update({ quantity: row.quantity + 1 })
       else return row
     })
-    .then( (newRow) => res.json(newRow))
+    .then( (newRow) => {
+      req.body.inCart = newRow.dataValues
+      res.json(req.body)
+    })
     .catch(next)
   )
 
@@ -41,7 +44,10 @@ module.exports = require('express').Router()
       if (row.quantity === 1) return row.destroy()
       else return row.update({ quantity: row.quantity - 1 })
     })
-    .then( (rowUpdate) => res.json(rowUpdate))
+    .then( (rowUpdate) => {
+      req.body.inCart = rowUpdate.dataValues
+      res.json(rowUpdate)
+    })
     .catch(next)
   )
 
