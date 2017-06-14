@@ -11,6 +11,7 @@ import AllProductsContainer from './components/AllProducts/react/AllProductsCont
 import ProductContainer from './components/AllProducts/react/ProductContainer'
 import ManageCartContainer from './components/ManageCart/react/ManageCartContainer'
 import OrderContainer from './components/Order/react/OrderContainer'
+import ThankYouContainer from './components/Order/react/ThankYouContainer'
 
 import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
 import { fetchAllProducts, fetchProduct, fetchReviews } from './components/AllProducts/reducers/products'
@@ -25,6 +26,7 @@ const Routes = props => (
         <Route path="/products/:id" component={ProductContainer} onEnter={props.loadProductAndReviews} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/order" component={OrderContainer} onEnter={props.loadCheckout} />
+        <Route path="/thankyou" component={ThankYouContainer} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
