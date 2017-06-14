@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
 
 // Thunk action creator
 export const retrieveItems = () => (dispatch) => {
-  axios.get(`/api/cart/products`)
+  axios.get(`/api/cart`)
   .then(res => res.data)
   .then(items => dispatch(getCart(items)))
   .catch(console.error.bind(console))
