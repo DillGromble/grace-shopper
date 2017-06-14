@@ -41,7 +41,7 @@ describe('/api/cart:', () => {
         .put(`/api/cart/products/add`)
         .send(product)
       const res = await server
-        .get(`/api/cart/products`)
+        .get(`/api/cart`)
         .expect(200)
       expect(res.body).to.have.length(1)
     }
@@ -76,7 +76,7 @@ describe('/api/cart:', () => {
         .put(`/api/cart/products/add`)
         .send(product)
       const res = await server
-        .get(`/api/cart/products`)
+        .get(`/api/cart`)
         .expect(200)
       expect(res.body[0].inCart.quantity).to.equal(2)
     })
@@ -99,7 +99,7 @@ describe('/api/cart:', () => {
         .put(`/api/cart/products/sub`)
         .send(product)
       const res = await server
-        .get(`/api/cart/products`)
+        .get(`/api/cart`)
         .expect(200)
       expect(res.body[0].inCart.quantity).to.equal(1)
     })
@@ -112,7 +112,7 @@ describe('/api/cart:', () => {
         .put(`/api/cart/products/sub`)
         .send(product)
       const res = await server
-        .get(`/api/cart/products`)
+        .get(`/api/cart`)
         .expect(200)
       expect(res.body).to.have.length(0)
 
