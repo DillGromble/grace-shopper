@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { browserHistory, hashHistory } from 'react-router'
 import {clearCart} from '../../ManageCart/reducers/reducer.js'
 
