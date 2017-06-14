@@ -8,7 +8,7 @@ chai.use(require('sinon-chai'))
 import {Login} from './Login'
 
 /* global describe xdescribe it xit beforeEach */
-describe('<Login />', () => {
+describe.only('<Login />', () => {
   let root
   beforeEach('render the root', () =>
     root = shallow(<Login/>)
@@ -47,14 +47,14 @@ describe('<Login />', () => {
       root.simulate('submit', submitEvent)
     })
 
-    xit('calls props.login with credentials', () => {
+    it('calls props.login with credentials', () => {
       expect(login).to.have.been.calledWith(
         submitEvent.target.username.value,
         submitEvent.target.password.value,
       )
     })
 
-    xit('calls preventDefault', () => {
+    it('calls preventDefault', () => {
       expect(submitEvent.preventDefault).to.have.been.called
     })
   })
