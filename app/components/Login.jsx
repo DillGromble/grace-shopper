@@ -1,8 +1,6 @@
 import React from 'react'
 
 export const Login = ({ login }) => (
-  <div>
-
     <form className="loginForm" onSubmit={evt => {
       evt.preventDefault()
       login(evt.target.username.value, evt.target.password.value)
@@ -14,7 +12,6 @@ export const Login = ({ login }) => (
       <input name="password" type="password" placeholder="password"/>
       <input type="submit" value="Login" />
     </form>
-  </div>
 )
 
 import {login} from 'APP/app/reducers/auth'
