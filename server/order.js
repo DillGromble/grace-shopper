@@ -35,5 +35,6 @@ module.exports = require('express').Router()
           res.send("Email doesn't match user email")
         }
       })
+      .then(order => res.send(order))
       .catch(next)
     })
