@@ -23,7 +23,7 @@ products.get('/:id/reviews', (req, res, next) => {
   .catch(err => console.error(err))
 })
 
-products.post('/:id/reviews', (req, res, next) => {
+products.post('/:id/reviews', (req, res, next) =>
   Reviews.create({
     subject: req.body.subject,
     rating: req.body.rating,
@@ -33,6 +33,6 @@ products.post('/:id/reviews', (req, res, next) => {
   })
   .then(review => res.json(review))
   .catch(err => console.error(err))
-})
+)
 
 module.exports = products

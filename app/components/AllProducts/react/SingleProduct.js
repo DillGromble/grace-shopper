@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 
-const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submitReview}) => (
+const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submitReview, user} ) => (
   <div className="container-fluid">
     <div className="row left col-md-4">
       <h1>Product Page: {currentProduct.name}</h1>
@@ -11,7 +11,8 @@ const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submit
     </div>
 
     <div className="row right col-md-8">
-      <div id="customerReviews">X <a href="#identifier">Reviews</a></div>
+      <div id="customerReviews">X <a href="#identifier">Reviews</a>
+      </div>
         <p>Quantity: {currentProduct.quantity}</p>
         <p>Price: ${currentProduct.price}</p>
         <p>Description: {currentProduct.description}</p>
@@ -22,10 +23,10 @@ const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submit
     </div>
 
     <div className="row col-md-10">
+      { user && (
       <form onSubmit={submitReview}>
           <label htmlFor="Subject">Subject: </label>
           <input type="text" name="subject" onChange={handleChange}/>
-
           <label htmlFor="Rating">Rating: </label>
           <select name="rating" onChange={handleChange}>
             <option value=""></option>
@@ -39,6 +40,8 @@ const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submit
           <textarea name="description" cols="30" rows="10" placeholder="Add your review here" onChange={handleChange}></textarea>
           <button>Submit your review</button>
         </form>
+      )
+      }
 
         <a name="identifier">Reviews</a>
         <ul className="reviews">{reviews && reviews.map(review => (
