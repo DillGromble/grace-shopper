@@ -49,6 +49,7 @@ class ProductContainer extends Component {
       onCartAdd={this.onCartAdd}
       handleChange={this.handleChange}
       submitReview={this.submitReview}
+      user={this.props.user}
     />
     )
   }
