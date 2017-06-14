@@ -32,7 +32,7 @@ describe('/api/cart:', () => {
     .then( p => product = p)
   )
 
-  describe('returns items in a users cart:', () => {
+  describe('GET returns items in a users cart:', () => {
 
     beforeEach(() => server = request.agent(app))
 
@@ -57,7 +57,7 @@ describe('/api/cart:', () => {
     )
   })
 
-  describe('adds items to a users cart:', () => {
+  describe('PUT/ADD adds items to a users cart:', () => {
 
     beforeEach(() => server = request.agent(app))
 
@@ -82,7 +82,7 @@ describe('/api/cart:', () => {
     })
   })
 
-  describe('subtracts items from a users cart', () => {
+  describe('PUT/SUB subtracts items from a users cart', () => {
 
     beforeEach(async () => {
       server = request.agent(app)
