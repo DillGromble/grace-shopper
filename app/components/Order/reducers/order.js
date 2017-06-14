@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { hashHistory } from 'react-router'
+import { browserHistory, hashHistory } from 'react-router'
 
 /* ----- ----- ----- CONSTANTS ----- ----- ----- */
 
@@ -41,6 +41,7 @@ export const createOrder = (address, email, items) =>
     .then(res => res.data)
     .then(order => {
       dispatch(setOrder(order))
+      browserHistory.push(`order/${order.id}`)
     })
     .catch(err => console.error(`Order unsuccessful`, err))
   }
