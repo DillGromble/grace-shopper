@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {mergeSessionCartToUser} from '../components/ManageCart/reducers/reducer'
+import {browserHistory} from 'react-router'
 
 const reducer = (state=null, action) => {
   switch (action.type) {
@@ -24,6 +25,7 @@ export const signup = (name, email, password) =>
     axios.post('/api/auth/signup/local',
       {name, email, password})
     .then(user => dispatch(create(user)))
+    .then(() => browserHistory.push('/products'))
     .catch(err => console.error(`Creating new account unsuccesful`, err))
 
 export const login = (username, password) =>
