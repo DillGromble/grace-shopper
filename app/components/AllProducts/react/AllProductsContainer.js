@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 import AllProducts from './AllProducts'
+import FontAwesome from 'react-fontawesome'
 
 class AllProductsContainer extends React.Component {
 
@@ -34,6 +35,7 @@ class AllProductsContainer extends React.Component {
     return (
       <div>
         <div className="input-group">
+          <p>Search <span className="glyphicon glyphicon-search"></span></p>
           <input
             type="text"
             className="form-control"

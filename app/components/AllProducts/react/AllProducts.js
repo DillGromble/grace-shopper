@@ -10,15 +10,16 @@ const AllProducts = props => (
     {
       props.products && props.products
         .map(product => (
-          <div className="col-xs-4" key={ product.id }>
+          <div className="col-md-4" key={ product.id }>
               <img className="productImage" src={ product.imageURL } />
               <div className="caption">
-                <h5>
+                <h3>
                   <Link to={`/products/${product.id}`}>{ product.name }</Link>
+                  <p>${ product.price }</p>
                   <form onSubmit={ (e) => props.onSubmit(e, product) }>
                     <button>Add to Cart</button>
                   </form>
-                </h5>
+                </h3>
               </div>
           </div>
         ))

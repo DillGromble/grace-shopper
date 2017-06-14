@@ -4,37 +4,51 @@ import Login from './Login'
 import WhoAmI from './WhoAmI'
 
 const Navbar = ({user, cart}) => (
-  <nav className="navbar navbar-default">
-    <div className="container-fluid">
-      <div className="navbar-header">
-        <Link to="/" className="navbar-brand">Home</Link>
-      </div>
+  <div>
+    <div className="dom-site-header">
+      <a href="/products">
+      <img className="LogoImg" src="http://www.iconarchive.com/download/i99487/webalys/kameleon.pics/Party-Poppers.ico" alt="GraceShopper"/>
+      Grace Shopper
+      </a>
+    </div>
+    <nav className="navbar navbar-default">
+      <div className="container-fluid">
+        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul className="nav navbar-nav">
+            <li><Link to="/products">All Products</Link></li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span className="caret"></span></a>
+              <ul className="dropdown-menu">
+                <li><a href="#">Decorations</a></li>
+                <li><a href="#">Clothing</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Outdoor Entertaining</a></li>
+                <li><a href="#">Gifts</a></li>
 
-      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul className="nav navbar-nav">
-          <li><Link to="/products">All Products</Link></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="nav navbar-nav navbar-right">
+
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign In <span className="caret"></span></a>
             <ul className="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" className="divider" />
-              <li><a href="#">Separated link</a></li>
+              <li><Link to="/login">Sign In</Link></li>
+              <li><Link to="/signup">Create Account</Link></li>
+              <li><Link to="/cart/products">Shopping List</Link></li>
             </ul>
           </li>
-          <li><Link to="/cart/products">
-            Cart {cart.length > 0 ? `(${cart.reduce((a, b) => a + b.inCart.quantity, 0)})` : ''}
-          </Link></li>
-        </ul>
 
-        <ul className="nav navbar-nav navbar-right">
-          <li className="active">{user ? <WhoAmI/> : <Login/>}</li>
-          <button><Link to="/Signup">Signup</Link></button>
-        </ul>
+            <li className="active loginHeader">{user ? <WhoAmI/> : <Login/>}</li>
+            <li><Link to="/cart/products">
+              <span className="glyphicon glyphicon-shopping-cart"></span> Cart {cart.length > 0 ? `(${cart.reduce((a, b) => a + b.inCart.quantity, 0)})` : ''}
+            </Link></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 )
 
 import {connect} from 'react-redux'

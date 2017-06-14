@@ -24,7 +24,7 @@ products.get('/:id/reviews', (req, res, next) => {
 })
 
 products.post('/:id/reviews', (req, res, next) => {
-  return Reviews.create({
+  Reviews.create({
     subject: req.body.subject,
     rating: req.body.rating,
     description: req.body.description,
