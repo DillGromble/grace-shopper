@@ -17,22 +17,23 @@ module.exports = require('express').Router()
 
   // POST api/order
   .post('/',
-    (req, res, next) =>
+    (req, res, next) => {
+      if (!req.session.passport.user) res.send('Please log in or create an account')
       User.findOne({
         where: {
           email: req.body.email,
         }
       })
       .then(user => {
-        if (user) {
+        if (user && user.id === req.session.passport.user) {
           return Order.create({
             address: req.body.address,
             items: req.body.items,
             user_id: user.id,
           })
         } else {
-          res.send('Please log in before proceeding to checkout!')
+          res.send("Email doesn't match user email")
         }
       })
       .catch(next)
-  )
+    })
