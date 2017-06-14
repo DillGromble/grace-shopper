@@ -9,7 +9,7 @@ export default class Order extends Component {
 
     return (
       <div>
-        <h3>Please confirm order details!</h3>
+        <h3>Confirm your order details...</h3>
         <div>
           <div className="col-xs-4"><h3>Item</h3></div>
           <div className="col-xs-4"><h3>Price</h3></div>
