@@ -13,7 +13,7 @@ body{
 }
 
 li.active.loginHeader {
-    display: none;
+    /*display: none;*/
 }
 
 .navbar-default {
