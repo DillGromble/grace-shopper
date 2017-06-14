@@ -1,28 +1,31 @@
 import axios from 'axios'
+
+import { browserHistory, hashHistory } from 'react-router'
 import {clearCart} from '../../ManageCart/reducers/reducer.js'
+
 /* ----- ----- ----- CONSTANTS ----- ----- ----- */
 
-const GET_ORDER = 'GET_ORDER'
+const SET_ORDER = 'SET_ORDER'
 
 /* ----- ----- ----- ACTION CREATORS ----- ----- */
 
-const getOrder = order => ({
-  type: GET_ORDER,
+const setOrder = order => ({
+  type: SET_ORDER,
   order
 })
 
 /* ----- ----- ----- REDUCER ----- ----- ----- ----- */
 
 const initialOrderState = {
-  order: {},
+  currentOrder: {},
 }
 
 const reducer = (state = initialOrderState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-  case GET_ORDER:
-    newState.order = action.order
+  case SET_ORDER:
+    newState.currentOrder = action.order
     return newState
   default:
     return state
@@ -35,8 +38,21 @@ export default reducer
 
 export const createOrder = (address, email, items) =>
   dispatch => {
-    console.log('MADE IT TO DISPATCH!')
+    console.log('MADE IT TO DISPATCH - AXIOS REQUEST IS NEXT!')
     axios.post('/api/order', { address, email, items })
-    .then(res => dispatch(clearCart()))
+    .then(res => res.data)
+    .then(order => {
+      dispatch(setOrder(order))
+      dispatch(clearCart())
+      browserHistory.push(`order/${order.id}`)
+    })
     .catch(err => console.error(`Order unsuccessful`, err))
+  }
+
+export const getOrder = orderId =>
+  dispatch => {
+    axios.get(`/api/order/${orderId}`)
+    .then(res => res.data)
+    .then(order => dispatch(setOrder(order)))
+    .catch(err => console.error(err))
   }

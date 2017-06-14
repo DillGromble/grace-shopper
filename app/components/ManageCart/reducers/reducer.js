@@ -14,7 +14,7 @@ const addItem = item => ({type: ADD_ITEM, item})
 
 const removeItem = item => ({type: REMOVE_ITEM, item})
 
-const clearCart = () => ({type: CLEAR_CART})
+export const clearCart = () => ({type: CLEAR_CART})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
