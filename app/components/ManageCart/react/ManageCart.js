@@ -17,7 +17,7 @@ export default class ManageCart extends Component {
 
     return (
       <div>
-        <h3>Hi!  Below is a summary of your order:</h3>
+        <h3>Hi! Below is a summary of your order:</h3>
         <div>
           <div className="col-xs-4"><h3>Item</h3></div>
           <div className="col-xs-4"><h3>Price</h3></div>
@@ -41,7 +41,7 @@ export default class ManageCart extends Component {
           }, 0)}
           </h3>
         </div>
-        <Link to="/order"><h2>Proceed To Checkout...</h2></Link>
+        {items.length ? <Link to="/order"><h2>Proceed To Checkout...</h2></Link> : <h2>Add some items to your cart!</h2>}
       </div>
     )
   }

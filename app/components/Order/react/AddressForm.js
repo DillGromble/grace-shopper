@@ -17,7 +17,7 @@ class AddressForm extends Component {
           label="shippingAddress"
           onSubmit={evt => {
             evt.preventDefault()
-            console.log('CLICKED')
+            console.log('CLICKED: ')
             const address = `${evt.target.address.value}, ${evt.target.city.value}, ${evt.target.state.value}, ${evt.target.zip.value}`
             const email = evt.target.email.value
             createOrderDispatcher(address, email, items)

@@ -3,6 +3,8 @@
 const db = require('APP/db')
 const User = db.model('users')
 const Order = db.model('orders')
+const Cart = db.model('cart')
+const InCart = db.model('inCart')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -17,22 +19,30 @@ module.exports = require('express').Router()
 
   // POST api/order
   .post('/',
-    (req, res, next) =>
+    (req, res, next) => {
+      if (!req.session.passport.user) return next('User is not logged in')
       User.findOne({
         where: {
           email: req.body.email,
         }
       })
       .then(user => {
-        if (user) {
+        if (user && user.id === req.session.passport.user) {
           return Order.create({
             address: req.body.address,
             items: req.body.items,
             user_id: user.id,
           })
+          .then(() => {
+            InCart.destroy({
+              where: {
+                cart_id: req.session.cart
+              }
+            })
+          })
         } else {
-          res.send('Please log in before proceeding to checkout!')
+          return next("Email doesn't match current user's email")
         }
       })
       .catch(next)
-  )
+    })
