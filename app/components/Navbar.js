@@ -13,24 +13,13 @@ const Navbar = ({user, cart}) => (
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav">
           <li><Link to="/products">All Products</Link></li>
-          <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-            <ul className="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" className="divider" />
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
           <li><Link to="/cart/products">
             Cart {cart.length > 0 ? `(${cart.reduce((a, b) => a + b.inCart.quantity, 0)})` : ''}
           </Link></li>
         </ul>
-
         <ul className="nav navbar-nav navbar-right">
           <li className="active">{user ? <WhoAmI/> : <Login/>}</li>
-          <button><Link to="/Signup">Signup</Link></button>
+          { user ? '' : <button><Link to="/Signup">Signup</Link></button> }
         </ul>
       </div>
     </div>
