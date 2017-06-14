@@ -15,14 +15,6 @@ export const Signup = ({ signup }) => (
         <span>Sign up with Google</span>
       </a>
     </p>
-    <p>
-      <a
-        href="api/auth/login/facebook"
-        className="btn btn-social btn-facebook">
-        <i className="fa fa-facebook" />
-        <span>Sign up with Facebook</span>
-      </a>
-    </p>
   </div>
     <input name="name" placeholder="name"/>
     <input name="email" placeholder="email"/>

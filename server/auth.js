@@ -32,16 +32,16 @@ const auth = require('express').Router()
 
 // Facebook needs the FACEBOOK_CLIENT_ID and FACEBOOK_CLIENT_SECRET
 // environment variables.
-OAuth.setupStrategy({
-  provider: 'facebook',
-  strategy: require('passport-facebook').Strategy,
-  config: {
-    clientID: env.FACEBOOK_CLIENT_ID,
-    clientSecret: env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
-  },
-  passport
-})
+// OAuth.setupStrategy({
+//   provider: 'facebook',
+//   strategy: require('passport-facebook').Strategy,
+//   config: {
+//     clientID: env.FACEBOOK_CLIENT_ID,
+//     clientSecret: env.FACEBOOK_CLIENT_SECRET,
+//     callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
+//   },
+//   passport
+// })
 
 // Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
 // environment variables.

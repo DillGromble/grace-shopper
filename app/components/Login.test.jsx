@@ -7,7 +7,7 @@ chai.use(require('sinon-chai'))
 
 import {Login} from './Login'
 
-/* global describe xdescribe it beforeEach */
+/* global describe xdescribe it xit beforeEach */
 describe('<Login />', () => {
   let root
   beforeEach('render the root', () =>

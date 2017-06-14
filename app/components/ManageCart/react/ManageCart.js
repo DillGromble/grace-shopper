@@ -29,7 +29,6 @@ export default class ManageCart extends Component {
                 <div className="col-xs-4">${item.price}</div>
                 <div className="col-xs-4">{item.quantity}</div>
                 <button
-                  className="btn btn-default btn-xs"
                   onClick={this.deleteClickedItem.bind(this, item)}
                 >Remove {item.name} from Cart</button>
             </div>
