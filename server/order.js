@@ -9,6 +9,20 @@ const InCart = db.model('inCart')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
+  // GET api/order/:id
+  .get('/:id',
+    (req, res, next) =>
+      Order.findById(req.params.id)
+      .then(order => {
+        if (order) {
+          res.send(order)
+        } else {
+          res.send('Order does not exist!')
+        }
+      })
+      .catch(next)
+  )
+
   // GET api/order
   .get('/',
     (req, res, next) =>
@@ -44,5 +58,6 @@ module.exports = require('express').Router()
           return next("Email doesn't match current user's email")
         }
       })
+      .then(order => res.send(order))
       .catch(next)
     })

@@ -15,6 +15,7 @@ import ThankYouContainer from './components/Order/react/ThankYouContainer'
 
 import { retrieveItems, getCart } from './components/ManageCart/reducers/reducer'
 import { fetchAllProducts, fetchProduct, fetchReviews } from './components/AllProducts/reducers/products'
+import { getOrder } from './components/Order/reducers/order'
 
 const Routes = props => (
     <Router history={browserHistory}>
@@ -26,7 +27,7 @@ const Routes = props => (
         <Route path="/products/:id" component={ProductContainer} onEnter={props.loadProductAndReviews} />
         <Route path="/cart/products" component={ManageCartContainer} onEnter={props.loadCartItems} />
         <Route path="/order" component={OrderContainer} onEnter={props.loadCheckout} />
-        <Route path="/thankyou" component={ThankYouContainer} />
+        <Route path="/order/:id" component={ThankYouContainer} onEnter={props.loadOrder}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
@@ -47,6 +48,9 @@ const mapDispatch = dispatch => ({
   },
   loadCheckout: () => {
     dispatch(retrieveItems())
+  },
+  loadOrder: (nextRouterState) => {
+    dispatch(getOrder(nextRouterState.params.id))
   }
 })
 

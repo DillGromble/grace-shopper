@@ -5,13 +5,15 @@ import { connect } from 'react-redux'
 
 class ThankYou extends Component {
   render() {
-    console.log('PROPS IN ThankYou: ', this.props)
     const userName = this.props.user && this.props.user.name
+    const orderNumber = this.props.currentOrder && this.props.currentOrder.id
+    const address = this.props.currentOrder && this.props.currentOrder.address
 
     return (
       <div>
         <h3>Thank you for shopping with us, {userName}!</h3>
-        <h3>Please reference order number ##### for all future inquiries.</h3>
+        <h3>Please reference order number {orderNumber} for all future inquiries.</h3>
+        <h3>We will be shipping to { address }.</h3>
       </div>
     )
   }
@@ -21,6 +23,7 @@ class ThankYou extends Component {
 
 const mapStateToProps = state => ({
   user: state.auth,
+  currentOrder: state.order.currentOrder,
 })
 
 export default connect(mapStateToProps)(ThankYou)
