@@ -7,6 +7,20 @@ const Order = db.model('orders')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
+  // GET api/order/:id
+  .get('/:id',
+    (req, res, next) =>
+      Order.findById(req.params.id)
+      .then(order => {
+        if (order) {
+          res.send(order)
+        } else {
+          res.send('Order does not exist!')
+        }
+      })
+      .catch(next)
+  )
+
   // GET api/order
   .get('/',
     (req, res, next) =>

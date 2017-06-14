@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 import Order from './Order'
-// import { removeFromCart } from '../reducers/reducer'
 
 const mapStateToProps = state => ({
   items: state.cart.items && state.cart.items.map(p => ({
@@ -10,11 +9,5 @@ const mapStateToProps = state => ({
     quantity: p.inCart.quantity,
   }))
 })
-
-function mapDispatchToProps(dispatch) {
-  // return {
-  //   clearCart: // some function
-  // }
-}
 
 export default connect(mapStateToProps)(Order)

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { hashHistory } from 'react-router'
 
 /* ----- ----- ----- CONSTANTS ----- ----- ----- */
 
@@ -22,7 +23,6 @@ const reducer = (state = initialOrderState, action) => {
 
   switch (action.type) {
   case SET_ORDER:
-    console.log('ORDER HAS BEEN GOTTEN - COMING TO YOU LIVE FROM THE REDUCER!')
     newState.currentOrder = action.order
     return newState
   default:
@@ -38,6 +38,17 @@ export const createOrder = (address, email, items) =>
   dispatch => {
     console.log('MADE IT TO DISPATCH - AXIOS REQUEST IS NEXT!')
     axios.post('/api/order', { address, email, items })
-    .then(res => dispatch(setOrder(res.data)))
+    .then(res => res.data)
+    .then(order => {
+      dispatch(setOrder(order))
+    })
     .catch(err => console.error(`Order unsuccessful`, err))
+  }
+
+export const getOrder = orderId =>
+  dispatch => {
+    axios.get(`/api/order/${orderId}`)
+    .then(res => res.data)
+    .then(order => dispatch(setOrder(order)))
+    .catch(err => console.error(err))
   }
