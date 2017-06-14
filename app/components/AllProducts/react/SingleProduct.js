@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { addToCart } from '../../ManageCart/reducers/reducer'
 
-const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submitReview}) => (
+const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submitReview, user}) => (
     <div>
       <h1>Product Page: {currentProduct.name}</h1>
       <img src={currentProduct.imageURL} />
@@ -17,6 +17,7 @@ const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submit
       <br />
       <p>Reviews:</p>
 
+      { user && (
       <form onSubmit={submitReview}>
         <label htmlFor="Subject">Subject: </label>
         <input type="text" name="subject" onChange={handleChange}/>
@@ -34,6 +35,8 @@ const SingleProduct = ({currentProduct, reviews, onCartAdd, handleChange, submit
         <textarea name="description" cols="30" rows="10" placeholder="Add your review here" onChange={handleChange}></textarea>
         <button>Submit your review</button>
       </form>
+      )
+      }
 
       <ul className="reviews">{reviews && reviews.map(review => (
         <li key={review.id} className="review">
