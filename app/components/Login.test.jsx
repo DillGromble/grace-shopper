@@ -8,7 +8,7 @@ chai.use(require('sinon-chai'))
 import {Login} from './Login'
 
 /* global describe xdescribe it xit beforeEach */
-describe.only('<Login />', () => {
+describe('<Login />', () => {
   let root
   beforeEach('render the root', () =>
     root = shallow(<Login/>)
