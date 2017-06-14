@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
+const CLEAR_CART = 'CLEAR_CART'
 
 /* ---------------------------ACTION CREATORS-------------------------------- */
 
@@ -12,6 +13,8 @@ const getCart = items => ({type: GET_CART, items})
 const addItem = item => ({type: ADD_ITEM, item})
 
 const removeItem = item => ({type: REMOVE_ITEM, item})
+
+const clearCart = () => ({type: CLEAR_CART})
 
 /* -------------------STATE-------------------------------------------------- */
 const initialState = {
@@ -42,6 +45,10 @@ const reducer = (state = initialState, action) => {
       item.id === action.item.id ? action.item : item
     )
     return newState
+
+  case CLEAR_CART:
+    newState.items = []
+    return newState
   }
 
   return state
@@ -49,7 +56,7 @@ const reducer = (state = initialState, action) => {
 
 // Thunk action creator
 export const retrieveItems = () => (dispatch) => {
-  axios.get(`/api/cart/products`)
+  axios.get(`/api/cart`)
   .then(res => res.data)
   .then(items => dispatch(getCart(items)))
   .catch(console.error.bind(console))

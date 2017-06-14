@@ -6,7 +6,7 @@ const InCart = db.model('inCart')
 const Product = db.model('products')
 module.exports = require('express').Router()
 
-  .use('/products', (req, res, next) =>
+  .use('/', (req, res, next) =>
     Cart.findById(req.session.cart)
     .then(cart => {
       req.cart = cart
@@ -17,7 +17,7 @@ module.exports = require('express').Router()
     .catch(next)
   )
 
-  .get('/products', (req, res, next) =>
+  .get('/', (req, res, next) =>
     req.cart.getProducts()
     .then(items => res.status(200).json(items))
   )

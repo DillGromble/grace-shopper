@@ -1,5 +1,7 @@
 import axios from 'axios'
+
 import { browserHistory, hashHistory } from 'react-router'
+import {clearCart} from '../../ManageCart/reducers/reducer.js'
 
 /* ----- ----- ----- CONSTANTS ----- ----- ----- */
 
@@ -41,6 +43,7 @@ export const createOrder = (address, email, items) =>
     .then(res => res.data)
     .then(order => {
       dispatch(setOrder(order))
+      dispatch(clearCart()
       browserHistory.push(`order/${order.id}`)
     })
     .catch(err => console.error(`Order unsuccessful`, err))
