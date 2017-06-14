@@ -12,9 +12,10 @@ class AddressForm extends Component {
 
     return (
       <div>
-        <h2>Please complete order details:</h2>
+        <h2>Billing and Shipping Details:</h2>
         <div>
           <form
+            className="addressDetails"
             label="shippingAddress"
             onSubmit={evt => {
               evt.preventDefault()
@@ -27,7 +28,8 @@ class AddressForm extends Component {
             <input name ="state" placeholder="State" />
             <input name ="zip" placeholder="Zip Code" />
             <input name ="email" placeholder="Please confirm email" />
-            <input type="submit" value="Confirm Order" />
+            <br/>
+            <button className="smallerButton" type="submit" value="Confirm Order">Confirm Order</button>
           </form>
         </div>
         <h3>{this.props.order && this.props.order.currentOrder}</h3>

@@ -13,7 +13,7 @@ body{
 }
 
 li.active.loginHeader {
-    /*display: none;*/
+    display: none;
 }
 
 .navbar-default {
@@ -67,7 +67,7 @@ a{
   outline-color: #166462;
 }
 
-button {
+button, .button {
     border: 1px solid #059fb0;
     background: #059fb0;
     color: white;
@@ -80,7 +80,7 @@ button {
     word-wrap: break-word;
 }
 
-button:hover {
+button:hover, .button:hover {
     color: white;
     background-color: #166462;
     border-color: #166462;
@@ -134,4 +134,44 @@ footer{
     border-bottom: 1px solid #9c9992;
     padding: 0 30px 5px;
     text-align: center;
+}
+
+.deleteButton, .checkoutButton, .smallerButton{
+     border: 1px solid #059fb0;
+    background: #059fb0;
+    color: white;
+    display: inline-block;
+    width: 20%;
+    margin: 10px 20px;
+    padding: 10px;
+    /* background-color: #fff; */
+    cursor: pointer;
+    word-wrap: break-word;
+}
+
+.itemCart{
+  margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    margin-bottom: 0;
+    padding-top: 15px;
+}
+
+button.checkoutButton a, .button.checkoutButton a {
+    color: white;
+}
+
+a.button.checkoutButton h2 {
+    margin: 0;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.checkoutButton, .smallerButton{
+  margin: 0;
+}
+
+.addressDetails input{
+    display: block;
+    margin: 10px 0;
 }
